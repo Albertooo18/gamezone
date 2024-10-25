@@ -1,0 +1,140 @@
+// Variables de colores actualizadas
+$background-color: #000000;
+$text-color: #ffffff;
+$primary-color: #cb6ce6;       // Morado del logo
+$secondary-color: #ff66c4;     // Rosa del logo
+$header-background: #1c1c1c;   // Color oscuro para el fondo del header, aside y footer
+
+// Estilos generales
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: $background-color;
+    color: $text-color;
+}
+
+// Contenedor del logo
+.logo-container {
+    width: 90%;  
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+
+    img {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+    }
+}
+
+// Header con el menú de navegación
+header {
+    background-color: $header-background;
+    padding: 20px;
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    nav ul li a {
+        color: $text-color;
+        text-decoration: none;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        
+        &:hover {
+            background-color: $primary-color;
+            color: $secondary-color;
+            border-radius: 5px;
+        }
+    }
+}
+
+// Contenedor principal
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+// Aside (barra lateral)
+aside {
+    width: 20%;
+    background-color: $header-background;
+    padding: 20px;
+
+    h2 {
+        color: $primary-color;
+        margin-bottom: 15px;
+    }
+
+    ul {
+        list-style: none;
+
+        li {
+            margin-bottom: 10px;
+            
+            a {
+                color: $text-color;
+                text-decoration: none;
+                
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+}
+
+// Main (contenido principal)
+main {
+    width: 75%;
+    padding: 20px;
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .galeria {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    // Ajustes para pantallas pequeñas
+    @media (max-width: 768px) {
+        .galeria {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+// Footer (pie de página)
+footer {
+    background-color: $header-background;
+    padding: 10px;
+    text-align: center;
+    color: $text-color;
+}
