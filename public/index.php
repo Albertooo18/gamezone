@@ -15,13 +15,14 @@
 
     <!-- Header con el menú de navegación -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Juegos</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
+    <nav>
+    <ul>
+        <li><a href="index.php">Inicio</a></li>
+        <li><a href="juegos.php">Juegos</a></li>
+        <li><a href="contacto.php">Contacto</a></li>
+        <li><a href="login.php">Iniciar Sesión</a></li> <!-- Nuevo enlace -->
+    </ul>
+</nav>
     </header>
 
     <!-- Contenido principal -->
@@ -54,7 +55,41 @@
 
     <!-- Pie de página -->
     <footer>
-        <p>&copy; 2024 GameZone. Todos los derechos reservados.</p>
+        <p>&copy; 2024 GameZone. Todos los derechos reservados. My last year being broke.</p>
     </footer>
+
+    <?php
+    session_start();
+
+    // Comprobar si el usuario está logueado y si el mensaje de bienvenida ya fue mostrado
+    if (isset($_SESSION['username']) && !isset($_SESSION['welcome_shown'])) {
+        // Mostrar notificación de bienvenida y marcarla como mostrada
+        echo "
+        <div class='notification' id='notification'>
+            ¡Bienvenido, " . $_SESSION['username'] . "!
+        </div>
+        ";
+
+        // Establecer la variable de sesión para indicar que el mensaje ya se mostró
+        $_SESSION['welcome_shown'] = true;
+    }
+    ?>
+    <script>
+    // Código JavaScript para mostrar y ocultar la notificación
+    document.addEventListener('DOMContentLoaded', function() {
+        const notification = document.getElementById('notification');
+        if (notification) {
+            // Mostrar la notificación
+            notification.classList.add('show');
+
+            // Ocultar la notificación después de 5 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+    });
+    </script>
+
+
 </body>
 </html>
