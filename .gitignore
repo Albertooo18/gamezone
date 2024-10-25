@@ -1,0 +1,52 @@
+# Ignorar directorios y archivos relacionados con XAMPP o entornos locales
+/.vscode/
+/.idea/
+/nbproject/
+
+# Ignorar compilaciones y archivos temporales de PHP
+*.log
+*.cache
+*.tmp
+
+# Ignorar archivos de configuración del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar dependencias de Composer
+/vendor/
+
+# Ignorar CSS compilado desde SASS
+/public/assets/css/
+
+# Ignorar compilaciones de SASS
+.sass-cache/
+*.scssc
+
+# Ignorar archivos de node_modules si usas npm para SASS
+/node_modules/
+
+# Ignorar el archivo de configuración de Git
+.gitconfig
+
+# Ignorar archivos de configuración de entorno
+.env
+.env.local
+
+# Ignorar configuraciones específicas del entorno local
+*.local
+*.env
+
+# Ignorar archivos de backup y editores de texto
+*~
+*.swp
+*.swo
+
+# Ignorar configuraciones de editor (opcional)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar archivos de sistema operativo
+.DS_Store
+Thumbs.db
