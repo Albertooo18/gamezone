@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../../public/assets/css/style.css">
 </head>
 <body>
-    <!-- Contenedor para el logo (con enlace a la página principal) -->
+    <!-- Contenedor para el logo -->
     <div class="logo-container">
         <a href="../../public/index.php">
             <img src="../../public/assets/img/nombre.png" alt="GameZone Logo">
@@ -30,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <header>
         <nav>
             <ul>
-                <li><a href="index.php">Inicio</a></li>
-                <li><a href="juegos.php">Juegos</a></li>
-                <li><a href="contacto.php">Contacto</a></li>
+                <li><a href="../../public/index.php">Inicio</a></li>
+                <li><a href="../../public/juegos.php">Juegos</a></li>
+                <li><a href="../../public/contactos.php">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -52,10 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <!-- Mostrar el mensaje de error si existe -->
         <?php if (!empty($error)): ?>
-            <p style="color: red;"><?php echo $error; ?></p>
+            <p style="color: red;"> <?php echo $error; ?></p>
         <?php endif; ?>
 
         <p>¿No tienes una cuenta? <a href="register.php">Regístrate aquí</a></p>
     </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2024 GameZone. Todos los derechos reservados. My last year being broke.</p>
+    </footer>
 </body>
 </html>

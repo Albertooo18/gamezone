@@ -1,10 +1,10 @@
-<!-- tictactoe.php -->
+<!-- contacto.php -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3 en Raya - GameZone</title>
+    <title>Contacto - GameZone</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -25,14 +25,19 @@
         </nav>
     </header>
 
-    <!-- Contenedor del juego "3 en Raya" -->
-    <div class="tic-tac-toe-container">
-        <h2>3 en Raya</h2>
-        <div id="tic-tac-toe-board"></div>
-        <button id="reset-button">Reiniciar Juego</button>
-    </div>
-
-    <script src="assets/js/tic_tac_toe.js"></script>
+    <main>
+        <h1>Contacto</h1>
+        <p>Puedes contactarnos a través del siguiente formulario:</p>
+        <form>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
 
     <!-- Pie de página -->
     <footer>
@@ -41,3 +46,4 @@
 
 </body>
 </html>
+

@@ -1,10 +1,10 @@
-<!-- tictactoe.php -->
+<!-- juegos.php -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3 en Raya - GameZone</title>
+    <title>Juegos - GameZone</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -25,14 +25,22 @@
         </nav>
     </header>
 
-    <!-- Contenedor del juego "3 en Raya" -->
-    <div class="tic-tac-toe-container">
-        <h2>3 en Raya</h2>
-        <div id="tic-tac-toe-board"></div>
-        <button id="reset-button">Reiniciar Juego</button>
-    </div>
-
-    <script src="assets/js/tic_tac_toe.js"></script>
+    <main>
+        <h1>Nuestros Juegos</h1>
+        <p>Aquí puedes encontrar todos nuestros juegos disponibles.</p>
+        <div class="galeria">
+            <img src="assets/img/cook.webp" alt="Juego 1">
+            <img src="assets/img/jungle.webp" alt="Juego 2">
+            <img src="assets/img/racing.webp" alt="Juego 3">
+            <img src="assets/img/robot.webp" alt="Juego 4">
+            <img src="assets/img/skate.webp" alt="Juego 5">
+            <img src="assets/img/space.webp" alt="Juego 6">
+            <a href="tic_tac_toe.php">
+                <img src="assets/img/tictactoe.webp" alt="Juego 3 en Raya">
+            </a>
+            <img src="assets/img/underwater.webp" alt="Juego 8">
+        </div>
+    </main>
 
     <!-- Pie de página -->
     <footer>
@@ -41,3 +49,4 @@
 
 </body>
 </html>
+
