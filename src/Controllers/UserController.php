@@ -4,27 +4,40 @@ require_once '../Models/User.php'; // Ruta correcta hacia el modelo de usuario.
 
 class UserController {
     public static function register() {
+        $error = ""; // Variable para almacenar el error
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-
+    
             $user = new User();
-            try {
-                $user->register($username, $password);
-                // Redirigir al login después de registrarse.
-                header('Location: ../Views/login.php');
-                exit();
-            } catch (Exception $e) {
-                echo "Error al registrar el usuario: " . $e->getMessage();
+    
+            // Verificar si el nombre de usuario ya existe
+            if ($user->userExists($username)) {
+                $error = "El nombre de usuario ya está en uso. Por favor, elige otro.";
+            } else {
+                try {
+                    $user->register($username, $password);
+                    // Redirigir al login después de registrarse.
+                    header('Location: ../Views/login.php');
+                    exit();
+                } catch (Exception $e) {
+                    $error = "Error al registrar el usuario: " . $e->getMessage();
+                }
             }
         }
+    
+        // Devolver el error al final del método (si hay alguno)
+        return $error;
     }
 
     public static function login() {
+        $error = "";  // Variable para almacenar el error
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-
+    
             $user = new User();
             if ($user->verifyCredentials($username, $password)) {
                 session_start();
@@ -32,9 +45,12 @@ class UserController {
                 header('Location: ../../public/index.php');
                 exit();
             } else {
-                echo "<p style='color: red;'>Usuario o contraseña incorrectos</p>";
+                $error = "Usuario o contraseña incorrectos";
             }
         }
+    
+        // Devolver el error al final del método (si hay alguno)
+        return $error;
     }
 }
 

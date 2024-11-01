@@ -24,4 +24,12 @@ class User {
         }
         return false;
     }
+
+    public function userExists($username) {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
+        $stmt->execute([$username]);
+        $count = $stmt->fetchColumn();
+    
+        return $count > 0; // Si el conteo es mayor a 0, el usuario ya existe
+    }
 }

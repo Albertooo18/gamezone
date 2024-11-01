@@ -1,3 +1,15 @@
+<?php
+require_once '../../src/Controllers/UserController.php';
+
+// Iniciar la variable de error como vacía
+$error = "";
+
+// Llamar a la función de registro para manejar la solicitud si se hace un POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $error = UserController::register(); // Ejecuta el registro y almacena el error si existe
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,7 +40,7 @@
     <!-- Formulario de registro -->
     <div class="auth-container">
         <h1>Registro de Usuario</h1>
-        <form action="../../src/Controllers/UserController.php?action=register" method="POST">
+        <form action="register.php" method="POST">
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" required>
 
@@ -37,6 +49,12 @@
 
             <button type="submit" class="btn-primary">Registrarse</button>
         </form>
+
+        <!-- Mostrar el mensaje de error si existe -->
+        <?php if (!empty($error)): ?>
+            <p style="color: red;"><?php echo $error; ?></p>
+        <?php endif; ?>
+
         <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
     </div>
 </body>

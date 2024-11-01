@@ -1,3 +1,15 @@
+<?php
+require_once '../../src/Controllers/UserController.php';
+
+// Iniciar la variable de error como vacía
+$error = "";
+
+// Llamar a la función de login para manejar la solicitud si se hace un POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $error = UserController::login();  // Ejecuta el login y almacena el error si existe
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,8 +19,8 @@
     <link rel="stylesheet" href="../../public/assets/css/style.css">
 </head>
 <body>
-     <!-- Contenedor para el logo (con enlace a la página principal) -->
-     <div class="logo-container">
+    <!-- Contenedor para el logo (con enlace a la página principal) -->
+    <div class="logo-container">
         <a href="../../public/index.php">
             <img src="../../public/assets/img/nombre.png" alt="GameZone Logo">
         </a>
@@ -24,9 +36,11 @@
             </ul>
         </nav>
     </header>
+
     <div class="auth-container">
         <h1>Iniciar Sesión</h1>
-        <form action="../../src/Controllers/UserController.php?action=login" method="POST">
+        <!-- Formulario de login -->
+        <form action="login.php" method="POST">
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" required>
 
@@ -35,6 +49,12 @@
 
             <button type="submit" class="btn-primary">Ingresar</button>
         </form>
+
+        <!-- Mostrar el mensaje de error si existe -->
+        <?php if (!empty($error)): ?>
+            <p style="color: red;"><?php echo $error; ?></p>
+        <?php endif; ?>
+
         <p>¿No tienes una cuenta? <a href="register.php">Regístrate aquí</a></p>
     </div>
 </body>
