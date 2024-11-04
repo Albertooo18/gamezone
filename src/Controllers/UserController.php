@@ -1,11 +1,11 @@
 <?php
-require_once '../../config/db.php'; // Conexión a la base de datos
-require_once '../Models/User.php'; // Ruta correcta hacia el modelo de usuario
+require_once '../../config/db.php';
+require_once '../Models/User.php';
 
 class UserController {
     public static function register() {
         $error = ""; // Variable para almacenar el error
-        
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $email = $_POST['email'];
@@ -26,9 +26,9 @@ class UserController {
 
             // Hash de la contraseña
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-    
+
             $user = new User();
-    
+
             // Verificar si el nombre de usuario o el email ya existen
             if ($user->userExists($username)) {
                 $error = "El nombre de usuario ya está en uso. Por favor, elige otro.";
@@ -45,18 +45,17 @@ class UserController {
                 }
             }
         }
-    
-        // Devolver el error al final del método (si hay alguno)
+
         return $error;
     }
 
     public static function login() {
         $error = "";  // Variable para almacenar el error
-        
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-    
+
             $user = new User();
             if ($user->verifyCredentials($username, $password)) {
                 session_start();
@@ -67,75 +66,78 @@ class UserController {
                 $error = "Usuario o contraseña incorrectos";
             }
         }
-    
-        // Devolver el error al final del método (si hay alguno)
+
         return $error;
     }
 
     public static function updateUserInfo() {
-        $error = ""; // Variable para almacenar el error
-        
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            session_start();
-            $current_username = $_SESSION['username'];
-            $new_username = $_POST['new-username'];
-            $email = $_POST['email'];
-            $current_password = $_POST['current-password'];
-            $new_password = $_POST['password'];
+        session_start();
+        $current_username = $_SESSION['username'];
+        $new_username = $_POST['new-username'];
+        $email = $_POST['email'];
+        $current_password = $_POST['current-password'];
+        $new_password = $_POST['password'];
 
-            $user = new User();
+        $user = new User();
 
-            // Verificar la contraseña actual antes de hacer los cambios
-            if (!$user->verifyCredentials($current_username, $current_password)) {
-                $error = "La contraseña actual es incorrecta. No se pueden realizar los cambios.";
-                return $error;
-            }
-
-            // Verificar si el nuevo nombre de usuario o email ya existen
-            if (!empty($new_username) && $new_username !== $current_username && $user->userExists($new_username)) {
-                $error = "El nuevo nombre de usuario ya está en uso. Por favor, elige otro.";
-                return $error;
-            }
-
-            if (!empty($email) && $email !== $user->getUserInfo($current_username)['email'] && $user->emailExists($email)) {
-                $error = "El nuevo email ya está en uso. Por favor, elige otro.";
-                return $error;
-            }
-
-            try {
-                // Actualizar la información del usuario (nombre de usuario, email y/o contraseña)
-                $hashed_new_password = !empty($new_password) ? password_hash($new_password, PASSWORD_BCRYPT) : null;
-                $user->updateUserInfo($current_username, $new_username, $email, $hashed_new_password);
-                $_SESSION['username'] = $new_username ?: $current_username; // Actualizar el nombre de usuario en la sesión si ha cambiado
-            } catch (Exception $e) {
-                $error = "Error al actualizar la información del usuario: " . $e->getMessage();
-            }
+        // Verificar la contraseña actual antes de hacer los cambios
+        if (!$user->verifyCredentials($current_username, $current_password)) {
+            $_SESSION['error'] = "Contraseña actual incorrecta";
+            header("Location: ../../src/Views/account.php");
+            exit();
         }
 
-        // Devolver el error al final del método (si hay alguno)
-        return $error;
+        // Actualizar información del usuario
+        $hashed_new_password = !empty($new_password) ? password_hash($new_password, PASSWORD_BCRYPT) : null;
+        $user->updateUserInfo($current_username, $new_username ?: $current_username, $email, $hashed_new_password);
+
+        // Actualizar la sesión con el nuevo nombre de usuario si ha cambiado
+        $_SESSION['username'] = !empty($new_username) ? $new_username : $current_username;
+
+        // Redirigir de vuelta a la página de gestión de cuenta para reflejar los cambios
+        header("Location: ../../src/Views/account.php");
+        exit();
+    }
+
+    public static function updateProfilePicture() {
+        session_start();
+        $username = $_SESSION['username'];
+
+        if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $_FILES['profile_picture']['tmp_name'];
+            $fileName = uniqid('profile_', true) . '.' . pathinfo($_FILES['profile_picture']['name'], PATHINFO_EXTENSION);
+            $destPath = '../../public/uploads/' . $fileName;
+
+            if (move_uploaded_file($fileTmpPath, $destPath)) {
+                $user = new User();
+                $user->updateProfilePicture($username, $destPath);
+
+                header("Location: ../../src/Views/account.php");
+                exit();
+            } else {
+                $_SESSION['error'] = "Error al subir la imagen";
+                header("Location: ../../src/Views/account.php");
+                exit();
+            }
+        } else {
+            $_SESSION['error'] = "No se seleccionó ninguna imagen. Por favor, selecciona una.";
+            header("Location: ../../src/Views/account.php");
+            exit();
+        }
     }
 
     public static function logout() {
-        // Iniciar la sesión si aún no se ha hecho
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-    
-        // Registro de depuración
-        error_log("UserController::logout() llamado");
-    
-        // Eliminar todas las variables de sesión
+
         session_unset();
-        // Destruir la sesión
         session_destroy();
-        // Redirigir a la página principal
         header("Location: ../../public/index.php");
         exit();
     }
 }
 
-// Manejo de las acciones (simplificado)
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
     if ($action === 'register') {
@@ -146,5 +148,7 @@ if (isset($_GET['action'])) {
         UserController::logout();
     } elseif ($action === 'updateUserInfo') {
         UserController::updateUserInfo();
+    } elseif ($action === 'updateProfilePicture') {
+        UserController::updateProfilePicture();
     }
 }
