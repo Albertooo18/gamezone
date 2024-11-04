@@ -1,11 +1,10 @@
-<!-- tictactoe.php -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3 en Raya - GameZone</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/tic_tac_toe.css">
 </head>
 <body>
     <!-- Contenedor para el logo -->
@@ -27,9 +26,11 @@
 
     <!-- Contenedor del juego "3 en Raya" -->
     <div class="tic-tac-toe-container">
-        <h2>3 en Raya</h2>
-        <div id="tic-tac-toe-board"></div>
-        <button id="reset-button">Reiniciar Juego</button>
+        <h2 class="tictactoe-titulo">3 en Raya</h2>
+        <div id="tic-tac-toe-board" class="tictactoe-tablero">
+            <!-- Celdas del tablero serán generadas dinámicamente -->
+        </div>
+        <button id="reset-button" class="tictactoe-reset-btn">Reiniciar Juego</button>
     </div>
 
     <script src="assets/js/tic_tac_toe.js"></script>
@@ -38,6 +39,5 @@
     <footer>
         <p>&copy; 2024 GameZone. Todos los derechos reservados. My last year being broke.</p>
     </footer>
-
 </body>
 </html>

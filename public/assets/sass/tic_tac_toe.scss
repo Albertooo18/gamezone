@@ -1,0 +1,131 @@
+// Archivo: tictactoe.scss
+// Contiene los estilos específicos de la página de 3 en Raya
+
+@import 'variables';
+
+// Reseteo de márgenes y relleno
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Estilo del body
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: $background-color !important; // Asegurar que el fondo del body sea negro
+    color: $text-color;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+// Estilo del contenedor del logo
+.logo-container {
+    text-align: center;
+    padding: 20px 0;
+
+    img {
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Estilo del header
+header {
+    background-color: $header-background;
+    padding: 10px 20px;
+    text-align: center;
+
+    nav {
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0;
+
+            li {
+                a {
+                    color: $text-color;
+                    text-decoration: none;
+                    padding: 10px;
+
+                    &:hover {
+                        color: $secondary-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Estilo del contenedor del juego "3 en Raya"
+.tic-tac-toe-container {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: $header-background; // Fondo oscuro para el contenedor del juego
+    border-radius: 10px;
+    max-width: 400px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+    h2 {
+        color: $primary-color;
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    #tic-tac-toe-board {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        gap: 10px;
+        justify-content: center;
+        margin: 20px auto;
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #444444; // Fondo oscuro pero no completamente negro
+            border: 2px solid $secondary-color;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: lighten($secondary-color, 10%);
+            }
+        }
+    }
+
+    #reset-button {
+        padding: 15px;
+        margin-top: 20px;
+        background-color: $button-primary;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: lighten($button-primary, 10%);
+        }
+    }
+}
+
+// Estilo del footer
+footer {
+    background-color: $header-background;
+    padding: 15px;
+    text-align: center;
+    color: $text-color;
+    margin-top: 40px;
+    font-family: Arial, sans-serif;
+}

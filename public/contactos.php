@@ -1,11 +1,10 @@
-<!-- contacto.php -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - GameZone</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/contacto.css">
 </head>
 <body>
     <!-- Contenedor para el logo -->
@@ -26,16 +25,16 @@
     </header>
 
     <main>
-        <h1>Contacto</h1>
-        <p>Puedes contactarnos a través del siguiente formulario:</p>
-        <form>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br><br>
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required><br><br>
-            <label for="mensaje">Mensaje:</label><br>
-            <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
-            <button type="submit">Enviar</button>
+        <h1 class="contacto-titulo">Contacto</h1>
+        <p class="contacto-descripcion">Puedes contactarnos a través del siguiente formulario:</p>
+        <form class="contacto-formulario">
+            <label class="form-label" for="nombre">Nombre:</label>
+            <input class="form-input" type="text" id="nombre" name="nombre" required><br><br>
+            <label class="form-label" for="email">Correo Electrónico:</label>
+            <input class="form-input" type="email" id="email" name="email" required><br><br>
+            <label class="form-label" for="mensaje">Mensaje:</label><br>
+            <textarea class="form-textarea" id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
+            <button class="btn-enviar" type="submit">Enviar</button>
         </form>
     </main>
 
@@ -43,7 +42,5 @@
     <footer>
         <p>&copy; 2024 GameZone. Todos los derechos reservados. My last year being broke.</p>
     </footer>
-
 </body>
 </html>
-

@@ -52,6 +52,18 @@ class UserController {
         // Devolver el error al final del método (si hay alguno)
         return $error;
     }
+
+    public static function logout() {
+        // Iniciar la sesión si aún no se ha hecho
+        session_start();
+        // Eliminar todas las variables de sesión
+        session_unset();
+        // Destruir la sesión
+        session_destroy();
+        // Redirigir a la página principal
+        header("Location: ../../public/index.php");
+        exit();
+    }
 }
 
 // Manejo de las acciones (simplificado)
@@ -61,5 +73,7 @@ if (isset($_GET['action'])) {
         UserController::register();
     } elseif ($action === 'login') {
         UserController::login();
+    } elseif ($action === 'logout') {
+        UserController::logout();
     }
 }

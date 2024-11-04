@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,7 +22,11 @@
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="juegos.php">Juegos</a></li>
                 <li><a href="contactos.php">Contacto</a></li>
-                <li><a href="../src/Views/login.php">Iniciar Sesión</a></li>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li><a href="../src/Views/account.php">Cuenta</a></li>
+                <?php else: ?>
+                    <li><a href="../src/Views/login.php">Iniciar Sesión</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
@@ -60,8 +67,6 @@
     </footer>
 
     <?php
-    session_start();
-
     // Comprobar si el usuario está logueado y si el mensaje de bienvenida ya fue mostrado
     if (isset($_SESSION['username']) && !isset($_SESSION['welcome_shown'])) {
         // Mostrar notificación de bienvenida y marcarla como mostrada
