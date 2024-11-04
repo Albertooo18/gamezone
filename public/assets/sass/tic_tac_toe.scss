@@ -1,26 +1,20 @@
-// Archivo: tictactoe.scss
-// Contiene los estilos específicos de la página de 3 en Raya
-
 @import 'variables';
 
-// Reseteo de márgenes y relleno
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-// Estilo del body
 html, body {
     width: 100%;
     height: 100%;
-    background-color: $background-color !important; // Asegurar que el fondo del body sea negro
+    background-color: $background-color !important;
     color: $text-color;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
 
-// Estilo del contenedor del logo
 .logo-container {
     text-align: center;
     padding: 20px 0;
@@ -32,7 +26,6 @@ html, body {
     }
 }
 
-// Estilo del header
 header {
     background-color: $header-background;
     padding: 10px 20px;
@@ -61,12 +54,11 @@ header {
     }
 }
 
-// Estilo del contenedor del juego "3 en Raya"
 .tic-tac-toe-container {
     text-align: center;
     margin: 40px auto;
     padding: 20px;
-    background-color: $header-background; // Fondo oscuro para el contenedor del juego
+    background-color: $header-background;
     border-radius: 10px;
     max-width: 400px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
@@ -90,7 +82,7 @@ header {
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #444444; // Fondo oscuro pero no completamente negro
+            background-color: #444444;
             border: 2px solid $secondary-color;
             font-size: 2.5em;
             font-weight: bold;
@@ -120,7 +112,6 @@ header {
     }
 }
 
-// Estilo del footer
 footer {
     background-color: $header-background;
     padding: 15px;

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +12,7 @@
 <body>
     <!-- Contenedor para el logo -->
     <div class="logo-container">
-        <img src="assets/img/nombre.png" alt="GameZone Logo">
+        <img src="assets/img/logo.png" alt="GameZone Logo">
     </div>
 
     <!-- Header con el menú de navegación -->
@@ -19,7 +22,11 @@
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="juegos.php">Juegos</a></li>
                 <li><a href="contactos.php">Contacto</a></li>
-                <li><a href="../src/Views/login.php">Iniciar Sesión</a></li>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li><a href="../src/Views/account.php">Cuenta</a></li>
+                <?php else: ?>
+                    <li><a href="../src/Views/login.php">Iniciar Sesión</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

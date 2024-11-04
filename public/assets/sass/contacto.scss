@@ -1,26 +1,20 @@
-// Archivo: contacto.scss
-// Contiene los estilos específicos de la página de contacto
-
 @import 'variables';
 
-// Reseteo de márgenes y relleno
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-// Estilo del body
 html, body {
     width: 100%;
     height: 100%;
-    background-color: $background-color;
+    background-color: $background-color !important;
     color: $text-color;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
 
-// Estilo del contenedor del logo
 .logo-container {
     text-align: center;
     padding: 20px 0;
@@ -32,7 +26,6 @@ html, body {
     }
 }
 
-// Estilo del header
 header {
     background-color: $header-background;
     padding: 10px 20px;
@@ -61,10 +54,9 @@ header {
     }
 }
 
-// Estilo del main
 main {
     padding: 40px 20px;
-    background-color: $background-dark; // Cambiamos el fondo para que combine con el resto de la página
+    background-color: $background-dark;
 
     h1 {
         font-size: 2.5em;
@@ -79,10 +71,10 @@ main {
         gap: 20px;
         max-width: 600px;
         margin: 0 auto;
-        background-color: $header-background; // Fondo del formulario
+        background-color: $header-background;
         padding: 30px;
         border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); // Sombra para hacer que resalte
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 
         label {
             color: $text-color;
@@ -93,7 +85,7 @@ main {
             padding: 15px;
             border: 1px solid #555555;
             border-radius: 10px;
-            background-color: #333333; // Color más oscuro para los campos del formulario
+            background-color: #333333;
             color: $text-color;
             font-family: Arial, sans-serif;
         }
@@ -115,7 +107,6 @@ main {
     }
 }
 
-// Estilo del footer
 footer {
     background-color: $header-background;
     padding: 15px;

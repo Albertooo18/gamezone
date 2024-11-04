@@ -16,13 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - GameZone</title>
-    <link rel="stylesheet" href="../../public/assets/css/style.css">
+    <link rel="stylesheet" href="../../public/assets/css/register.css">
 </head>
 <body>
     <!-- Contenedor para el logo -->
     <div class="logo-container">
         <a href="../../public/index.php">
-            <img src="../../public/assets/img/nombre.png" alt="GameZone Logo">
+            <img src="../../public/assets/img/logo.png" alt="GameZone Logo">
         </a>
     </div>
 
@@ -44,8 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" required>
 
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password">Confirmar Contraseña:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
 
             <button type="submit" class="btn-primary">Registrarse</button>
         </form>

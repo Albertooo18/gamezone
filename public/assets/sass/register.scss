@@ -1,123 +1,11 @@
 @import 'variables';
 
-/* Contenedor del logo */
-.logo-container {
-    text-align: center;
-    padding: 20px 0;
-
-    img {
-        max-width: 500px; // Tamaño aumentado del logo
-        width: 100%;
-        height: auto;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Estilos para el header */
-header {
-    background-color: $header-background;
-    padding: 10px 0;
-    text-align: center;
-
-    nav {
-        ul {
-            list-style: none;
-            display: flex;
-            justify-content: center; /* Centra el menú de navegación */
-            gap: 30px; /* Espaciado entre los elementos del menú */
-            padding: 0;
-            margin: 0;
-
-            li {
-                a {
-                    color: $secondary-color;
-                    text-decoration: none;
-                    font-weight: bold;
-                    font-size: 1.2em;
-
-                    &:hover {
-                        color: $primary-color;
-                    }
-                }
-            }
-        }
-    }
-}
-
-/* Contenedor principal de autenticación */
-.auth-container {
-    width: 400px;
-    margin: 40px auto; /* Ajuste del margen superior para centrado */
-    padding: 30px;
-    background-color: $header-background;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-    h1 {
-        text-align: center;
-        color: $primary-color;
-        margin-bottom: 20px;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-
-        label {
-            margin: 10px 0 5px;
-            color: $text-color;
-            font-weight: bold;
-        }
-
-        input {
-            padding: 12px;
-            border: 1px solid #555555;
-            border-radius: 5px;
-            background-color: #333333;
-            color: $text-color;
-            font-size: 1em;
-
-            &:focus {
-                border-color: $primary-color;
-                box-shadow: 0 0 5px rgba(100, 149, 237, 0.5);
-                outline: none;
-            }
-        }
-
-        .btn-primary {
-            padding: 12px;
-            margin-top: 12px;
-            background-color: $primary-color;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-
-            &:hover {
-                background-color: $secondary-color;
-            }
-        }
-    }
-
-    p {
-        text-align: center;
-        margin-top: 15px;
-        color: $text-color;
-
-        a {
-            color: $secondary-color;
-            text-decoration: none;
-            font-weight: bold;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
-}
-
-/* Asegura que el body tenga el fondo adecuado */
 html, body {
     width: 100%;
     height: 100%;
@@ -127,12 +15,115 @@ html, body {
     overflow-x: hidden;
 }
 
-/* Estilo del footer */
+.logo-container {
+    text-align: center;
+    padding: 20px 0;
+
+    img {
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+    }
+}
+
+header {
+    background-color: $header-background;
+    padding: 10px 20px;
+    text-align: center;
+
+    nav {
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0;
+
+            li {
+                a {
+                    color: $text-color;
+                    text-decoration: none;
+                    padding: 10px;
+
+                    &:hover {
+                        color: $secondary-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.auth-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: $header-background;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    margin-top: 40px;
+
+    h1 {
+        color: $primary-color;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        label {
+            font-weight: bold;
+            color: $text-color;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #555555;
+            border-radius: 5px;
+            background-color: #333333;
+            color: $text-color;
+            font-family: Arial, sans-serif;
+        }
+
+        .btn-primary {
+            padding: 10px;
+            background-color: $button-primary;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: lighten($button-primary, 10%);
+            }
+        }
+    }
+
+    p {
+        text-align: center;
+        margin-top: 15px;
+
+        a {
+            color: $secondary-color;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
 footer {
     background-color: $header-background;
     padding: 15px;
     text-align: center;
     color: $text-color;
-    font-family: Arial, sans-serif;
     margin-top: 40px;
+    font-family: Arial, sans-serif;
 }
