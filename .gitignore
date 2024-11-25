@@ -15,8 +15,11 @@ Thumbs.db
 # Ignorar dependencias de Composer
 /vendor/
 
-# Ignorar CSS compilado desde SASS
-/public/assets/css/
+# Ignorar archivos Sass en la carpeta sass
+/public/assets/sass/*.scss
+
+# No ignorar CSS en la carpeta css
+!/public/assets/css/
 
 # Ignorar compilaciones de SASS
 .sass-cache/
