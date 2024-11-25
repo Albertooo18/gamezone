@@ -31,8 +31,8 @@ session_start();
         </nav>
     </header>
 
-    <!-- Contenido principal -->
-    <div class="container">
+    <!-- Contenedor principal con aside y edificios -->
+    <div class="main-container">
         <!-- Barra lateral (aside) -->
         <aside>
             <h2>Enlaces útiles</h2>
@@ -43,22 +43,36 @@ session_start();
             </ul>
         </aside>
 
-        <!-- Galería de juegos (main content) -->
-        <main>
-            <h1>Catálogo de Juegos</h1>
-            <div class="galeria">
-                <img src="assets/img/cook.webp" alt="Juego 1">
-                <img src="assets/img/jungle.webp" alt="Juego 2">
-                <img src="assets/img/racing.webp" alt="Juego 3">
-                <img src="assets/img/robot.webp" alt="Juego 4">
-                <img src="assets/img/skate.webp" alt="Juego 5">
-                <img src="assets/img/space.webp" alt="Juego 6">
-                <a href="tic_tac_toe.php">
-                    <img src="assets/img/tictactoe.webp" alt="Juego 3 en Raya">
+        <!-- Sección de edificios (main content) -->
+        <section class="building-section">
+            <div class="building">
+                <a href="dev.php">
+                    <img class="building-img" src="assets/img/jungle.webp" alt="Juego Selva">
                 </a>
-                <img src="assets/img/underwater.webp" alt="Juego 8">
+                <div class="building-info">
+                    <h3>Juego Selva</h3>
+                    <p>Explora la jungla mientras esquivas obstáculos y encuentras tesoros ocultos.</p>
+                </div>
             </div>
-        </main>
+            <div class="building">
+                <a href="dev.php">
+                    <img class="building-img" src="assets/img/racing.webp" alt="Juego Carrera">
+                </a>
+                <div class="building-info">
+                    <h3>Juego Carrera</h3>
+                    <p>Conduce a toda velocidad por la ciudad y evita el tráfico para llegar primero a la meta.</p>
+                </div>
+            </div>
+            <div class="building">
+                <a href="dev.php">
+                    <img class="building-img" src="assets/img/space.webp" alt="Juego Espacial">
+                </a>
+                <div class="building-info">
+                    <h3>Juego Espacial</h3>
+                    <p>Explora el universo y enfréntate a enemigos en emocionantes batallas espaciales.</p>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Pie de página -->
@@ -67,28 +81,20 @@ session_start();
     </footer>
 
     <?php
-    // Comprobar si el usuario está logueado y si el mensaje de bienvenida ya fue mostrado
     if (isset($_SESSION['username']) && !isset($_SESSION['welcome_shown'])) {
-        // Mostrar notificación de bienvenida y marcarla como mostrada
         echo "
         <div class='notification' id='notification'>
             ¡Bienvenido, " . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . "!
         </div>
         ";
-
-        // Establecer la variable de sesión para indicar que el mensaje ya se mostró
         $_SESSION['welcome_shown'] = true;
     }
     ?>
     <script>
-    // Código JavaScript para mostrar y ocultar la notificación
     document.addEventListener('DOMContentLoaded', function() {
         const notification = document.getElementById('notification');
         if (notification) {
-            // Mostrar la notificación
             notification.classList.add('show');
-
-            // Ocultar la notificación después de 5 segundos
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 5000);

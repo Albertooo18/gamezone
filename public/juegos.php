@@ -37,17 +37,32 @@ session_start();
         <h1 class="juegos-titulo">Nuestros Juegos</h1>
         <p class="juegos-descripcion">Aquí puedes encontrar todos nuestros juegos disponibles.</p>
         <div class="galeria-juegos">
-            <img class="juego-imagen" src="assets/img/cook.webp" alt="Juego 1">
-            <img class="juego-imagen" src="assets/img/jungle.webp" alt="Juego 2">
-            <img class="juego-imagen" src="assets/img/racing.webp" alt="Juego 3">
-            <img class="juego-imagen" src="assets/img/robot.webp" alt="Juego 4">
-            <img class="juego-imagen" src="assets/img/skate.webp" alt="Juego 5">
-            <img class="juego-imagen" src="assets/img/space.webp" alt="Juego 6">
+            <a href="dev.php">
+                <img class="juego-imagen" src="assets/img/cook.webp" alt="Juego 1">
+            </a>
+            <a href="dev.php">
+                <img class="juego-imagen" src="assets/img/jungle.webp" alt="Juego 2">
+            </a>
+            <a href="dev.php">
+                <img class="juego-imagen" src="assets/img/racing.webp" alt="Juego 3">
+            </a>
+            <a href="dev.php">
+                <img class="juego-imagen" src="assets/img/robot.webp" alt="Juego 4">
+            </a>
+            <a href="dev.php">
+                <img class="juego-imagen" src="assets/img/skate.webp" alt="Juego 5">
+            </a>
+            <a href="dev.php">
+                <img class="juego-imagen" src="assets/img/space.webp" alt="Juego 6">
+            </a>
             <a href="tic_tac_toe.php">
                 <img class="juego-imagen" src="assets/img/tictactoe.webp" alt="Juego 3 en Raya">
             </a>
-            <img class="juego-imagen" src="assets/img/underwater.webp" alt="Juego 8">
+            <a href="dev.php">
+                <img class="juego-imagen" src="assets/img/underwater.webp" alt="Juego 8">
+            </a>
         </div>
+
     </main>
 
     <!-- Pie de página -->
