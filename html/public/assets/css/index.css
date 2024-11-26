@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.logo-container {
+  text-align: center;
+  padding: 20px 0;
+}
+.logo-container img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+}
+
+header {
+  background-color: #212121;
+  padding: 10px 20px;
+  text-align: center;
+}
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+}
+header nav ul li a {
+  color: #ff66c4;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 10px;
+}
+header nav ul li a:hover {
+  color: #cb6ce6;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+aside {
+  background-color: #333333;
+  padding: 20px;
+  border-radius: 10px;
+}
+aside h2 {
+  color: #ff66c4;
+  margin-bottom: 15px;
+}
+aside ul {
+  list-style: none;
+  padding-left: 0;
+}
+aside ul li {
+  margin-bottom: 10px;
+}
+aside ul li a {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+aside ul li a:hover {
+  color: #cb6ce6;
+}
+
+.building-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.building-section .building {
+  display: flex;
+  background-color: #212121;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  align-items: center;
+}
+.building-section .building .building-img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px 0 0 10px;
+  transition: all 0.3s ease;
+}
+.building-section .building .building-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #cb6ce6;
+  border: 2px solid #cb6ce6;
+}
+.building-section .building .building-info {
+  padding: 20px;
+  text-align: left;
+}
+.building-section .building .building-info h3 {
+  color: #ff66c4;
+  margin-bottom: 10px;
+}
+.building-section .building .building-info p {
+  color: #e0e0e0;
+}
+
+footer {
+  background-color: #212121;
+  padding: 10px;
+  text-align: center;
+  color: #e0e0e0;
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=index.css.map */

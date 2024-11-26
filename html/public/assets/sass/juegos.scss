@@ -1,0 +1,115 @@
+@import 'variables';
+
+// Reinicio de márgenes y relleno para todos los elementos
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Estilo del body y html
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #121212 !important; // Fondo negro elegante
+    color: $text-color; // Texto claro para contraste
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+// Contenedor del logo
+.logo-container {
+    text-align: center;
+    padding: 20px 0;
+
+    img {
+        max-width: 500px; // Tamaño adecuado del logo
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Estilos para el header y la navegación
+header {
+    background-color: $header-background;
+    padding: 10px 20px;
+    text-align: center;
+
+    nav {
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+
+            li {
+                a {
+                    color: $text-color;
+                    text-decoration: none;
+                    font-weight: bold;
+                    font-size: 1.2em;
+                    padding: 10px;
+
+                    &:hover {
+                        color: $secondary-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Estilo del contenido principal
+main {
+    padding: 40px 20px;
+    text-align: center;
+    
+
+    h1 {
+        font-size: 2.5em;
+        color: $primary-color;
+        margin-bottom: 15px;
+    }
+
+    .juegos-descripcion {
+        font-size: 1.2em;
+        color: $secondary-color;
+        margin-bottom: 30px;
+    }
+
+    // Galería de juegos
+    .galeria-juegos {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .juego-imagen {
+            width: 100%;
+            border-radius: 10px;
+            padding: 5px;
+            opacity: 0.9;
+            border: 2px solid #484848;
+            transition: all 0.3s ease;
+
+            &:hover {
+                opacity: 1;
+                border: 2px solid $secondary-color;
+                box-shadow: 0 0 15px $secondary-color;
+                transform: scale(1.05);
+            }
+        }
+    }
+}
+
+// Estilo del footer
+footer {
+    background-color: $header-background;
+    padding: 15px;
+    text-align: center;
+    color: $text-color;
+    font-family: Arial, sans-serif;
+    margin-top: 40px;
+}
