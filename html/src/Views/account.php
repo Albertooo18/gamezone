@@ -1,6 +1,13 @@
 <?php
 session_start();
 require_once '../../src/Models/User.php';
+require_once '../../src/Models/Score.php'; // Requerir el modelo de Score
+
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../src/Views/login.php");
+    exit();
+}
 
 // Obtener información del usuario actual
 $userModel = new User();
@@ -9,6 +16,10 @@ $userInfo = $userModel->getUserInfo($_SESSION['username']);
 // Verificar si hay un error almacenado en la sesión para mostrar
 $error = isset($_SESSION['error']) ? $_SESSION['error'] : "";
 unset($_SESSION['error']);
+
+// Obtener las puntuaciones del usuario
+$scoreModel = new Score();
+$userScores = $scoreModel->getUserScores($userInfo['id']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -68,6 +79,33 @@ unset($_SESSION['error']);
 
                 <button type="submit" class="save-changes-btn">Guardar Cambios</button>
             </form>
+        </div>
+
+        <!-- Columna 3: Puntuaciones Recientes -->
+        <div class="column-3">
+            <h2>Puntuaciones Recientes</h2>
+            <?php if (!empty($userScores)): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Juego</th>
+                            <th>Puntuación</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($userScores as $score): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($score['game']); ?></td>
+                                <td><?php echo htmlspecialchars($score['score']); ?></td>
+                                <td><?php echo isset($score['created_at']) ? htmlspecialchars($score['created_at']) : 'No disponible'; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>No tienes puntuaciones registradas.</p>
+            <?php endif; ?>
         </div>
     </main>
 

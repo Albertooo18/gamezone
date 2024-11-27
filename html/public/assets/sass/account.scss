@@ -154,6 +154,42 @@ main {
             }
         }
     }
+
+    .column-3 {
+        background-color: $background-dark;
+        color: $text-color;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+        h2 {
+            color: $primary-color;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+
+            th, td {
+                border: 1px solid #555555;
+                padding: 10px;
+                text-align: center;
+            }
+
+            th {
+                background-color: $header-background;
+                color: $text-color;
+                font-weight: bold;
+            }
+
+            td {
+                background-color: $background-dark;
+                color: $text-color;
+            }
+        }
+    }
 }
 
 .logout-container {

@@ -59,6 +59,8 @@ class UserController {
             $user = new User();
             if ($user->verifyCredentials($username, $password)) {
                 session_start();
+                $userInfo = $user->getUserInfo($username);
+                $_SESSION['user_id'] = $userInfo['id']; // Guardar el ID del usuario en la sesión
                 $_SESSION['username'] = $username;
                 header('Location: ../../public/index.php');
                 exit();
@@ -99,33 +101,6 @@ class UserController {
         exit();
     }
 
-    public static function updateProfilePicture() {
-        session_start();
-        $username = $_SESSION['username'];
-
-        if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
-            $fileTmpPath = $_FILES['profile_picture']['tmp_name'];
-            $fileName = uniqid('profile_', true) . '.' . pathinfo($_FILES['profile_picture']['name'], PATHINFO_EXTENSION);
-            $destPath = '../../public/uploads/' . $fileName;
-
-            if (move_uploaded_file($fileTmpPath, $destPath)) {
-                $user = new User();
-                $user->updateProfilePicture($username, $destPath);
-
-                header("Location: ../../src/Views/account.php");
-                exit();
-            } else {
-                $_SESSION['error'] = "Error al subir la imagen";
-                header("Location: ../../src/Views/account.php");
-                exit();
-            }
-        } else {
-            $_SESSION['error'] = "No se seleccionó ninguna imagen. Por favor, selecciona una.";
-            header("Location: ../../src/Views/account.php");
-            exit();
-        }
-    }
-
     public static function logout() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -148,7 +123,5 @@ if (isset($_GET['action'])) {
         UserController::logout();
     } elseif ($action === 'updateUserInfo') {
         UserController::updateUserInfo();
-    } elseif ($action === 'updateProfilePicture') {
-        UserController::updateProfilePicture();
     }
 }

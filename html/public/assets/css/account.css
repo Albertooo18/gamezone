@@ -133,6 +133,36 @@ main .column-2 form .save-changes-btn {
 main .column-2 form .save-changes-btn:hover {
   background-color: #da98ed;
 }
+main .column-3 {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+main .column-3 h2 {
+  color: #ff66c4;
+  margin-bottom: 20px;
+}
+main .column-3 table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+main .column-3 table th, main .column-3 table td {
+  border: 1px solid #555555;
+  padding: 10px;
+  text-align: center;
+}
+main .column-3 table th {
+  background-color: #222222;
+  color: #ffffff;
+  font-weight: bold;
+}
+main .column-3 table td {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
 
 .logout-container {
   text-align: center;

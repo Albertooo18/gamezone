@@ -1,12 +1,15 @@
 <?php
-require_once '../../config/db.php'; // Conexión a la base de datos
+require_once '../../config/db.php'; // Asegúrate de incluir el archivo de conexión
 
 class User {
     private $pdo;
 
     public function __construct() {
-        global $pdo;
-        $this->pdo = $pdo;
+        try {
+            $this->pdo = Db::getConnection();
+        } catch (Exception $e) {
+            throw new Exception("Error: No se pudo establecer la conexión a la base de datos. Verifica la configuración.");
+        }
     }
 
     public function register($username, $email, $password, $profile_picture = 'default-profile.webp') {
@@ -60,9 +63,9 @@ class User {
     }
 
     public function getUserInfo($username) {
-        $stmt = $this->pdo->prepare("SELECT username, email, profile_picture FROM users WHERE username = ?");
+        $stmt = $this->pdo->prepare("SELECT id, username, email, profile_picture FROM users WHERE username = ?");
         $stmt->execute([$username]);
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function updateProfilePicture($username, $profile_picture) {
