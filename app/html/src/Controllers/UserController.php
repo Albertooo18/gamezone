@@ -62,7 +62,7 @@ class UserController {
                 $userInfo = $user->getUserInfo($username);
                 $_SESSION['user_id'] = $userInfo['id']; // Guardar el ID del usuario en la sesión
                 $_SESSION['username'] = $username;
-                header('Location: ../../public/index.php');
+                header('Location: ../../index.php');
                 exit();
             } else {
                 $error = "Usuario o contraseña incorrectos";
@@ -108,7 +108,7 @@ class UserController {
 
         session_unset();
         session_destroy();
-        header("Location: ../../public/index.php");
+        header("Location: ../../index.php");
         exit();
     }
 }

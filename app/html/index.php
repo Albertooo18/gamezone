@@ -12,7 +12,7 @@ session_start();
 <body>
     <!-- Contenedor para el logo -->
     <div class="logo-container">
-        <img src="assets/img/logo.png" alt="GameZone Logo">
+        <img src="public/assets/img/logo.png" alt="GameZone Logo">
     </div>
 
     <!-- Header con el menú de navegación -->
@@ -30,6 +30,7 @@ session_start();
             </ul>
         </nav>
     </header>
+
 
     <!-- Contenedor principal con aside y edificios -->
     <div class="main-container">

@@ -5,10 +5,10 @@ class Db {
 
     public static function getConnection() {
         if (self::$pdo === null) {
-            $host = 'db'; // Cambiar localhost por el nombre del servicio en Docker Compose
+            $host = 'db'; // Nombre del servicio en docker-compose.yml
             $db = 'gamezone';
-            $user = 'user'; // Usuario definido en docker-compose.yml
-            $pass = 'password'; // Contraseña definida en docker-compose.yml
+            $user = 'user'; // Usuario que configuraste en docker-compose.yml
+            $pass = 'password'; // Contraseña que configuraste en docker-compose.yml
 
             try {
                 self::$pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
