@@ -5,16 +5,16 @@ class Db {
 
     public static function getConnection() {
         if (self::$pdo === null) {
-            $host = 'localhost';
+            $host = 'db'; // Cambiar localhost por el nombre del servicio en Docker Compose
             $db = 'gamezone';
-            $user = 'root';
-            $pass = ''; // Cambia si tienes una contraseña para tu servidor de MySQL.
+            $user = 'user'; // Usuario definido en docker-compose.yml
+            $pass = 'password'; // Contraseña definida en docker-compose.yml
 
             try {
                 self::$pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
                 self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
-                throw new Exception("Error: No se pudo establecer la conexión a la base de datos. Verifica la configuración.");
+                throw new Exception("Error: No se pudo establecer la conexión a la base de datos. Verifica la configuración. " . $e->getMessage());
             }
         }
 
