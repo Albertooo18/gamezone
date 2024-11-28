@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let difficultyLevel = 1;
     let gameEnded = false;
 
-    // Obtener el ID del usuario desde PHP
-    const userId = <?php echo json_encode($userId); ?>;
+    // Obtener el ID del usuario desde el HTML
+    const userId = document.querySelector('meta[name="user-id"]').getAttribute('content');
+    const maxScore = parseInt(document.querySelector('meta[name="max-score"]').getAttribute('content'));
+    maxScoreElement.textContent = maxScore;
 
     // Renderizar el tablero
     const renderBoard = () => {
@@ -120,9 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         consecutiveWins = 0;
                     }
                     updateScore();
-                    currentPlayer = 'O'; // Hacer que la IA empiece en el próximo juego
-                    resetGame(); // Reiniciar el tablero después de ganar
-                    iaMove(); // IA hace el primer movimiento
+                    resetGame();
+                    currentPlayer = 'O'; // La IA comienza después de ganar
+                    iaMove();
                 });
             } else {
                 showAlert('Derrota', 'La IA ha ganado. Inténtalo de nuevo.', 'error').then(() => {
@@ -133,9 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (totalLosses >= 3) {
                         endGame();
                     } else {
-                        currentPlayer = 'O'; // Hacer que la IA empiece en el próximo juego
-                        resetGame(); // Reiniciar el tablero después de perder
-                        iaMove(); // IA hace el primer movimiento
+                        resetGame();
+                        currentPlayer = 'X';
                     }
                 });
             }
@@ -143,13 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (!gameState.includes(null)) {
-            showAlert('Empate', 'Es un empate.', 'info').then(() => {
-                playerScore += 2;
-                updateScore();
-                currentPlayer = 'O'; // Hacer que la IA empiece en el próximo juego
-                resetGame(); // Reiniciar el tablero después de un empate
-                iaMove(); // IA hace el primer movimiento
-            });
+            showCoinFlip();
             return true;
         }
 
@@ -164,6 +159,52 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: icon,
             confirmButtonText: 'OK'
         });
+    };
+
+    // Mostrar una moneda giratoria antes de decidir quién comienza después de un empate
+    const showCoinFlip = () => {
+        const coinResult = Math.random() < 0.5 ? 'cara' : 'sello';
+        const message = coinResult === 'cara' ? 'Cara, después del empate empiezas tú.' : 'Sello, después del empate empieza la IA.';
+
+        // Mostrar el gif de la moneda en el centro con animación
+        const coinGif = document.createElement('img');
+        coinGif.src = '../public/assets/img/coin.gif';
+        coinGif.alt = 'Moneda girando';
+        coinGif.style.width = '165px';  // Un 10% más grande
+        coinGif.style.height = '165px'; // Un 10% más grande
+        coinGif.style.position = 'fixed';
+        coinGif.style.top = '50%';
+        coinGif.style.left = '50%';
+        coinGif.style.transform = 'translate(-50%, -50%) scale(0)';
+        coinGif.style.transition = 'transform 0.5s ease-in-out';
+        document.body.appendChild(coinGif);
+
+        // Animación de aparición
+        setTimeout(() => {
+            coinGif.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 100);
+
+        setTimeout(() => {
+            // Animación de desaparición
+            coinGif.style.transform = 'translate(-50%, -50%) scale(0)';
+            setTimeout(() => {
+                document.body.removeChild(coinGif);
+                Swal.fire({
+                    title: 'Empate',
+                    text: message,
+                    icon: 'info',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    resetGame();
+                    if (coinResult === 'sello') {
+                        currentPlayer = 'O';
+                        iaMove();
+                    } else {
+                        currentPlayer = 'X';
+                    }
+                });
+            }, 500);
+        }, 2000); // Mostrar el gif por 2 segundos
     };
 
     // Finalizar el juego después de 3 derrotas
@@ -193,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateScore = () => {
         scoreElement.textContent = playerScore;
         levelElement.textContent = difficultyLevel;
-        lossesElement.textContent = totalLosses;
+        lossesElement.innerHTML = '&#10084;'.repeat(3 - totalLosses);
 
         if (playerScore > parseInt(maxScoreElement.textContent)) {
             maxScoreElement.textContent = playerScore;
@@ -206,13 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("No se puede enviar la puntuación sin un ID de usuario.");
             return;
         }
-
-        console.log("Enviando datos al backend:", {
-            action: 'saveScore',
-            user_id: userId,
-            game_id: 1,
-            score: score
-        });
 
         fetch('../src/Controllers/ScoreController.php', {
             method: 'POST',
@@ -242,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reiniciar el juego
     const resetGame = () => {
         gameState = Array(9).fill(null);
-        currentPlayer = 'X';
         gameEnded = false;
         renderBoard();
     };

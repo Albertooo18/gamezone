@@ -1,4 +1,12 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// Agregar encabezados CORS para evitar problemas si se está probando entre diferentes dominios
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../Models/Score.php';
 
@@ -12,28 +20,41 @@ class ScoreController {
         // Conectar a la base de datos
         $db = Db::getConnection();
 
-        // Verificar si ya existe un registro para este usuario y juego
-        $query = "SELECT * FROM scores WHERE user_id = :user_id AND game_id = :game_id";
+        // Obtener las puntuaciones existentes del usuario para este juego, ordenadas de mayor a menor
+        $query = "SELECT * FROM scores WHERE user_id = :user_id AND game_id = :game_id ORDER BY score DESC";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
         $stmt->bindParam(':game_id', $gameId, PDO::PARAM_INT);
         $stmt->execute();
-        $existingScore = $stmt->fetch(PDO::FETCH_ASSOC);
+        $existingScores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($existingScore) {
-            // Si ya existe, actualizar la puntuación si es mayor
-            $query = "UPDATE scores SET score = GREATEST(score, :score), created_at = NOW() WHERE user_id = :user_id AND game_id = :game_id";
-        } else {
-            // Si no existe, insertar nueva puntuación
+        if (count($existingScores) < 3) {
+            // Si hay menos de 3 puntuaciones, insertar la nueva puntuación
             $query = "INSERT INTO scores (user_id, game_id, score, created_at) VALUES (:user_id, :game_id, :score, NOW())";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+            $stmt->bindParam(':game_id', $gameId, PDO::PARAM_INT);
+            $stmt->bindParam(':score', $score, PDO::PARAM_INT);
+            $stmt->execute();
+        } else {
+            // Si ya existen 3 puntuaciones, verificar si la nueva puntuación es mayor que la menor existente
+            $lowestScore = $existingScores[2]['score'];
+            if ($score > $lowestScore) {
+                // Eliminar la puntuación más baja
+                $query = "DELETE FROM scores WHERE id = :id";
+                $stmt = $db->prepare($query);
+                $stmt->bindParam(':id', $existingScores[2]['id'], PDO::PARAM_INT);
+                $stmt->execute();
+
+                // Insertar la nueva puntuación
+                $query = "INSERT INTO scores (user_id, game_id, score, created_at) VALUES (:user_id, :game_id, :score, NOW())";
+                $stmt = $db->prepare($query);
+                $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+                $stmt->bindParam(':game_id', $gameId, PDO::PARAM_INT);
+                $stmt->bindParam(':score', $score, PDO::PARAM_INT);
+                $stmt->execute();
+            }
         }
-
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
-        $stmt->bindParam(':game_id', $gameId, PDO::PARAM_INT);
-        $stmt->bindParam(':score', $score, PDO::PARAM_INT);
-
-        $stmt->execute();
     }
 
     public static function getHighScores() {
@@ -49,23 +70,20 @@ class ScoreController {
 
 // Manejo de peticiones POST desde JavaScript (fetch)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = isset($_POST['action']) ? $_POST['action'] : '';
+    $action = $_POST['action'] ?? '';
+    $userId = $_POST['user_id'] ?? null;
+    $score = $_POST['score'] ?? null;
 
-    if ($action === 'saveScore') {
-        $userId = isset($_POST['user_id']) ? $_POST['user_id'] : null;
-        $score = isset($_POST['score']) ? $_POST['score'] : null;
-
-        if ($userId !== null && $score !== null) {
-            try {
-                $gameId = 1; // ID del juego "3 en Raya" (puedes ajustarlo según tu base de datos)
-                ScoreController::saveScore($userId, $gameId, $score);
-                echo json_encode(['success' => true]);
-            } catch (Exception $e) {
-                echo json_encode(['success' => false, 'error' => $e->getMessage()]);
-            }
-        } else {
-            echo json_encode(['success' => false, 'error' => 'Datos insuficientes para guardar la puntuación']);
+    if ($action === 'saveScore' && $userId !== null && $score !== null) {
+        try {
+            $gameId = 1; // ID del juego "3 en Raya" (puedes ajustarlo según tu base de datos)
+            ScoreController::saveScore($userId, $gameId, $score);
+            echo json_encode(['success' => true]);
+        } catch (Exception $e) {
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Parámetros insuficientes o inválidos']);
     }
 }
 ?>

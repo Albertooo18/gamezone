@@ -105,4 +105,26 @@ footer {
   font-family: Arial, sans-serif;
 }
 
+.coin-flip-container {
+  display: none;
+  text-align: center;
+  margin: 20px auto;
+}
+.coin-flip-container img {
+  width: 150px;
+  height: auto;
+}
+
+@keyframes flipCoin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
 /*# sourceMappingURL=tic_tac_toe.css.map */
