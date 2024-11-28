@@ -37,10 +37,14 @@ $userScores = $scoreModel->getUserScores($userInfo['id']);
     <header>
         <nav>
             <ul>
-                <li><a href="../../public/index.php">Inicio</a></li>
+                <li><a href="../../index.php">Inicio</a></li>
                 <li><a href="../../public/juegos.php">Juegos</a></li>
                 <li><a href="../../public/contactos.php">Contacto</a></li>
-                <li><a href="account.php">Cuenta</a></li>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li><a href="account.php">Cuenta</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Iniciar Sesión</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>

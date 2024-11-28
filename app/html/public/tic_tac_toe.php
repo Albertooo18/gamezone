@@ -44,7 +44,7 @@ try {
     <header>
         <nav>
             <ul>
-                <li><a href="index.php">Inicio</a></li>
+                <li><a href="../index.php">Inicio</a></li>
                 <li><a href="juegos.php">Juegos</a></li>
                 <li><a href="contactos.php">Contacto</a></li>
                 <li><a href="../src/Views/account.php">Cuenta</a></li>

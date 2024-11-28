@@ -7,7 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameZone - Catálogo de Juegos</title>
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="../html/public/assets/css/index.css">
 </head>
 <body>
     <!-- Contenedor para el logo -->
@@ -20,12 +20,12 @@ session_start();
         <nav>
             <ul>
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="juegos.php">Juegos</a></li>
-                <li><a href="contactos.php">Contacto</a></li>
+                <li><a href="public/juegos.php">Juegos</a></li>
+                <li><a href="public/contactos.php">Contacto</a></li>
                 <?php if (isset($_SESSION['username'])): ?>
-                    <li><a href="../src/Views/account.php">Cuenta</a></li>
+                    <li><a href="src/Views/account.php">Cuenta</a></li>
                 <?php else: ?>
-                    <li><a href="../src/Views/login.php">Iniciar Sesión</a></li>
+                    <li><a href="src/Views/login.php">Iniciar Sesión</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
@@ -47,7 +47,7 @@ session_start();
         <section class="building-section">
             <div class="building">
                 <a href="dev.php">
-                    <img class="building-img" src="assets/img/jungle.webp" alt="Juego Selva">
+                    <img class="building-img" src="../html/public/assets/img/jungle.webp" alt="Juego Selva">
                 </a>
                 <div class="building-info">
                     <h3>Juego Selva</h3>
@@ -56,7 +56,7 @@ session_start();
             </div>
             <div class="building">
                 <a href="dev.php">
-                    <img class="building-img" src="assets/img/racing.webp" alt="Juego Carrera">
+                    <img class="building-img" src="../html/public/assets/img/racing.webp" alt="Juego Carrera">
                 </a>
                 <div class="building-info">
                     <h3>Juego Carrera</h3>
@@ -65,7 +65,7 @@ session_start();
             </div>
             <div class="building">
                 <a href="dev.php">
-                    <img class="building-img" src="assets/img/space.webp" alt="Juego Espacial">
+                    <img class="building-img" src="../html/public/assets/img/space.webp" alt="Juego Espacial">
                 </a>
                 <div class="building-info">
                     <h3>Juego Espacial</h3>
