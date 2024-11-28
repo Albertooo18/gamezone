@@ -1,0 +1,27 @@
+# Docker Compose para la Aplicación Web (app/docker-compose.yml)
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gamezone_web
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/var/www/html   # Volumen local mapeado al contenedor
+    networks:
+      - app-network
+    restart: "always"
+    environment:
+      - APACHE_LOG_DIR=/var/log/apache2
+      - DB_HOST=ip_privada_mariadb  # Cambiar por la IP privada de la instancia MariaDB
+      - DB_PORT=3306
+      - DB_NAME=gamezone
+      - DB_USER=user
+      - DB_PASSWORD=password
+
+networks:
+  app-network:
+    driver: bridge
