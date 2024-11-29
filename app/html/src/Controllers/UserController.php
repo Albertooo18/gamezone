@@ -1,6 +1,6 @@
 <?php
 require_once '../../config/db.php';
-require_once '../Models/User.php';
+require_once '../models/User.php';
 
 class UserController {
     public static function register() {

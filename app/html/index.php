@@ -7,7 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameZone - Catálogo de Juegos</title>
-    <link rel="stylesheet" href="../html/public/assets/css/index.css">
+    <link rel="stylesheet" href="public/assets/css/index.css">
 </head>
 <body>
     <!-- Contenedor para el logo -->

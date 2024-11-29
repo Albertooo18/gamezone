@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../../src/Models/User.php';
-require_once '../../src/Models/Score.php'; // Requerir el modelo de Score
+require_once '../../src/models/User.php';
+require_once '../../src/models/Score.php'; // Requerir el modelo de Score
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['username'])) {

@@ -8,7 +8,7 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
 require_once __DIR__ . '/../../config/db.php';
-require_once __DIR__ . '/../Models/Score.php';
+require_once __DIR__ . '/../models/Score.php';
 
 class ScoreController {
     public static function saveScore($userId, $gameId, $score) {
