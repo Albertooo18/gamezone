@@ -7,25 +7,25 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameZone - Juego en Desarrollo</title>
-    <link rel="stylesheet" href="assets/css/dev.css">
+    <link rel="stylesheet" href="../assets/css/dev.css">
 </head>
 <body>
     <!-- Contenedor para el logo -->
     <div class="logo-container">
-        <img src="assets/img/logo.png" alt="GameZone Logo">
+        <img src="../assets/img/logo.png" alt="GameZone Logo">
     </div>
 
     <!-- Header con el menú de navegación -->
     <header>
         <nav>
             <ul>
-                <li><a href="../index.php">Inicio</a></li>
-                <li><a href="public/juegos.php">Juegos</a></li>
-                <li><a href="public/contactos.php">Contacto</a></li>
+                <li><a href="../../index.php">Inicio</a></li>
+                <li><a href="../juegos.php">Juegos</a></li>
+                <li><a href="../contactos.php">Contacto</a></li>
                 <?php if (isset($_SESSION['username'])): ?>
-                    <li><a href="../src/Views/account.php">Cuenta</a></li>
+                    <li><a href="../../src/Views/account.php">Cuenta</a></li>
                 <?php else: ?>
-                    <li><a href="../src/Views/login.php">Iniciar Sesión</a></li>
+                    <li><a href="../../src/Views/login.php">Iniciar Sesión</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
@@ -35,7 +35,7 @@ session_start();
     <div class="container">
         <!-- Contenedor del GIF -->
         <div class="gif-container">
-            <img src="assets/img/obrero.gif" alt="GIF en desarrollo">
+            <img src="../assets/img/obrero.gif" alt="GIF en desarrollo">
         </div>
         <main>
             <h1>Juego en Desarrollo</h1>

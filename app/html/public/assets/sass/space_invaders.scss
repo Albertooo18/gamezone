@@ -1,0 +1,263 @@
+@import 'variables';
+
+// Reinicio de márgenes y relleno
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Estilo del body y html
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+// Contenedor del logo
+.logo-container {
+    text-align: center;
+    padding: 20px 0;
+
+    img {
+        max-width: 500px;
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Estilo del header y navegación
+header {
+    background-color: #212121;
+    padding: 10px 20px;
+    text-align: center;
+
+    nav {
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+
+            li {
+                a {
+                    color: #ff66c4;
+                    text-decoration: none;
+                    font-weight: bold;
+                    font-size: 1.2em;
+                    padding: 10px;
+
+                    &:hover {
+                        color: #cb6ce6;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Ajustes en .info-sidebar-right para alineación correcta a la derecha
+// Ajustes en .info-sidebar-right para alineación vertical (columna)
+.info-sidebar-right {
+    width: 300px;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    font-size: 1em;
+    text-align: center; /* Centrar el texto dentro de la caja */
+
+    display: flex; /* Activa Flexbox */
+    flex-direction: column; /* Organiza los elementos en una columna */
+    align-items: center; /* Centra los elementos dentro del contenedor */
+
+    h3 {
+        font-size: 1.4em;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+        line-height: 1.8em;
+    }
+
+    /* Información del puntaje */
+    #player-score,
+    #enemies-destroyed,
+    #power-ups {
+        margin: 10px 0; /* Espaciado entre cada elemento */
+        font-size: 1.2em;
+    }
+
+    #player-score {
+        font-size: 1.4em; /* Mayor tamaño para el puntaje */
+    }
+}
+
+// Contenedor principal con grid
+.main-container {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 1800px; /* Limita el ancho máximo */
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* 1 columna lateral, 2 columnas para el juego, 1 lateral */
+    gap: 20px;
+    padding: 20px;
+    align-items: start;
+    margin: 0 auto; /* Centra el contenedor */
+
+    .button-container {
+        display: flex;
+        justify-content: center; /* Centra el botón */
+        gap: 20px;
+        margin-bottom: 20px; /* Separación adicional si es necesario */
+    }
+
+    .game-button {
+        padding: 10px 20px;
+        font-size: 1.2em;
+        color: #ffffff;
+        background-color: #ff66c4;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #cb6ce6;
+        }
+    }
+
+    #game-area {
+        position: relative;
+        width: 800px;
+        height: 600px;
+        background-color: #000; // Negro para diferenciar el área de juego
+        border: 2px solid #ff66c4;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    #player {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: #ff66c4;
+        transform: translateX(-50%);
+    }
+
+    .bullet {
+        position: absolute;
+        width: 10px;
+        height: 20px;
+        background-color: #00ff00;
+        border-radius: 5px;
+    }
+
+    .enemy {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+    }
+
+    .enemy.red {
+        background-color: #ff0000;
+    }
+
+    .enemy.blue {
+        background-color: #0000ff;
+    }
+
+    .enemy.yellow {
+        background-color: #ffff00;
+    }
+
+    .item {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+
+    .item.speed {
+        background-color: #ff66c4;
+    }
+
+    .item.bulletSpeed {
+        background-color: #00ffff;
+    }
+
+    .item.bulletDamage {
+        background-color: #ff9900;
+    }
+
+    // Contenedores laterales para controles e información del juego
+    .info-sidebar {
+        width: 350px;
+        background-color: #333;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        color: #ffffff;
+        font-size: 1.1em;
+        left: 40px;
+
+        h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            line-height: 1.8em;
+        }        
+    }
+
+    // Contenedor lateral para controles e información del puntaje (a la derecha)
+    .info-sidebar-right {
+        grid-column: 3 / span 1; /* Coloca la info-sidebar-right a la derecha */
+        display: flex;
+        flex-direction: column;  /* Alineación vertical */
+        justify-content: flex-start;  /* Evita que se apilen los elementos hacia abajo */
+    }
+}
+
+// Estilo del footer
+footer {
+    background-color: #212121;
+    padding: 10px;
+    text-align: center;
+    color: #e0e0e0;
+    margin-top: 20px;
+}
+
+// Ajuste de velocidad de enemigos y colores para mayor visibilidad
+.enemy.red {
+    background-color: #ff0000;
+    animation: moveEnemy 5s linear infinite;
+}
+
+.enemy.blue {
+    background-color: #0000ff;
+    animation: moveEnemy 4s linear infinite;
+}
+
+.enemy.yellow {
+    background-color: #ffff00;
+    animation: moveEnemy 3s linear infinite;
+    transition: left 0.5s ease-in-out;
+}
+
+@keyframes moveEnemy {
+    0% { top: 0; }
+    100% { top: 100%; }
+}

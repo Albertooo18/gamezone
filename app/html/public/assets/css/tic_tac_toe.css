@@ -1,3 +1,4 @@
+/* SASS */
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +19,7 @@ html, body {
   padding: 20px 0;
 }
 .logo-container img {
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
   height: auto;
 }
@@ -44,45 +45,66 @@ header nav ul li a:hover {
   color: #cb6ce6;
 }
 
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: calc(100vh - 200px);
+  padding: 20px;
+  gap: 60px;
+}
+
+.side-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.side-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
 .tic-tac-toe-container {
   text-align: center;
-  margin: 40px auto;
-  padding: 20px;
   background-color: #222222;
-  border-radius: 10px;
-  max-width: 400px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
-.tic-tac-toe-container h2 {
+
+.tictactoe-titulo {
   color: #ff66c4;
-  font-size: 2em;
+  font-size: 2.5em;
   margin-bottom: 20px;
 }
-.tic-tac-toe-container #tic-tac-toe-board {
+
+#tic-tac-toe-board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   gap: 10px;
   justify-content: center;
   margin: 20px auto;
 }
-.tic-tac-toe-container #tic-tac-toe-board .cell {
+#tic-tac-toe-board .cell {
   width: 100px;
   height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #444444;
-  border: 2px solid #cb6ce6;
+  border: 3px solid #cb6ce6;
   font-size: 2.5em;
   font-weight: bold;
   color: #ffffff;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.tic-tac-toe-container #tic-tac-toe-board .cell:hover {
+#tic-tac-toe-board .cell:hover {
   background-color: #da98ed;
 }
-.tic-tac-toe-container #reset-button {
+
+#reset-button {
   padding: 15px;
   margin-top: 20px;
   background-color: #cb6ce6;
@@ -91,9 +113,32 @@ header nav ul li a:hover {
   cursor: pointer;
   font-size: 1em;
   border-radius: 10px;
+  transition: background-color 0.3s;
 }
-.tic-tac-toe-container #reset-button:hover {
+#reset-button:hover {
   background-color: #da98ed;
+}
+
+.info-card {
+  background-color: #121212;
+  border: 3px solid #cb6ce6;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  min-width: 200px;
+  max-width: 240px;
+}
+
+.info-card h3 {
+  color: #ff66c4;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+}
+
+.info-card p {
+  margin-bottom: 5px;
+  font-size: 1.1em;
 }
 
 footer {

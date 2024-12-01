@@ -1,3 +1,4 @@
+/* SASS */
 @import 'variables';
 
 * {
@@ -20,7 +21,7 @@ html, body {
     padding: 20px 0;
 
     img {
-        max-width: 600px;
+        max-width: 500px;
         width: 100%;
         height: auto;
     }
@@ -54,62 +55,103 @@ header {
     }
 }
 
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: calc(100vh - 200px);
+    padding: 20px;
+    gap: 60px;
+}
+
+.side-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.side-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
 .tic-tac-toe-container {
     text-align: center;
-    margin: 40px auto;
-    padding: 20px;
     background-color: $header-background;
-    border-radius: 10px;
-    max-width: 400px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
 
-    h2 {
-        color: $primary-color;
-        font-size: 2em;
-        margin-bottom: 20px;
-    }
+.tictactoe-titulo {
+    color: $primary-color;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
 
-    #tic-tac-toe-board {
-        display: grid;
-        grid-template-columns: repeat(3, 100px);
-        gap: 10px;
+#tic-tac-toe-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+
+    .cell {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        margin: 20px auto;
-
-        .cell {
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #444444;
-            border: 2px solid $secondary-color;
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #ffffff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-
-            &:hover {
-                background-color: lighten($secondary-color, 10%);
-            }
-        }
-    }
-
-    #reset-button {
-        padding: 15px;
-        margin-top: 20px;
-        background-color: $button-primary;
+        background-color: #444444;
+        border: 3px solid $secondary-color;
+        font-size: 2.5em;
+        font-weight: bold;
         color: #ffffff;
-        border: none;
         cursor: pointer;
-        font-size: 1em;
-        border-radius: 10px;
+        transition: background-color 0.3s;
 
         &:hover {
-            background-color: lighten($button-primary, 10%);
+            background-color: lighten($secondary-color, 10%);
         }
     }
+}
+
+#reset-button {
+    padding: 15px;
+    margin-top: 20px;
+    background-color: $button-primary;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: lighten($button-primary, 10%);
+    }
+}
+
+.info-card {
+    background-color: $background-color;
+    border: 3px solid $secondary-color;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-width: 200px;
+    max-width: 240px;
+}
+
+.info-card h3 {
+    color: $primary-color;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.info-card p {
+    margin-bottom: 5px;
+    font-size: 1.1em;
 }
 
 footer {
@@ -131,7 +173,6 @@ footer {
         height: auto;
     }
 }
-
 
 @keyframes flipCoin {
     0% {

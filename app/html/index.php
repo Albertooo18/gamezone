@@ -47,8 +47,8 @@ session_start();
         <!-- Sección de edificios (main content) -->
         <section class="building-section">
             <div class="building">
-                <a href="dev.php">
-                    <img class="building-img" src="../html/public/assets/img/jungle.webp" alt="Juego Selva">
+                <a href="public/games/dev.php">
+                    <img class="building-img" src="public/assets/img/jungle.webp" alt="Juego Selva">
                 </a>
                 <div class="building-info">
                     <h3>Juego Selva</h3>
@@ -56,8 +56,8 @@ session_start();
                 </div>
             </div>
             <div class="building">
-                <a href="dev.php">
-                    <img class="building-img" src="../html/public/assets/img/racing.webp" alt="Juego Carrera">
+                <a href="public/games/dev.php">
+                    <img class="building-img" src="public/assets/img/racing.webp" alt="Juego Carrera">
                 </a>
                 <div class="building-info">
                     <h3>Juego Carrera</h3>
@@ -65,7 +65,7 @@ session_start();
                 </div>
             </div>
             <div class="building">
-                <a href="dev.php">
+                <a href="public/games/space_invaders.php">
                     <img class="building-img" src="../html/public/assets/img/space.webp" alt="Juego Espacial">
                 </a>
                 <div class="building-info">
