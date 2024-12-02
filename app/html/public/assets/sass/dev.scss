@@ -1,5 +1,3 @@
-// Archivo: dev.sass
-
 @import 'variables';
 
 // Reseteo de márgenes y relleno
@@ -13,10 +11,14 @@
 html, body {
   width: 100%;
   height: 100%;
-  background-color: $background-color;
-  color: #e0e0e0;
+  background-color: $background-color;  // Fondo oscuro principal
+  color: $text-color;  // Color de texto claro
   font-family: Arial, sans-serif;
   overflow-x: hidden;
+  background: $page-background;  // Fondo de página con imagen
+  background-size: $background-size;
+  background-attachment: $background-attachment;
+  background-position: $background-position;
 }
 
 // Notificación emergente
@@ -24,8 +26,8 @@ html, body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #333333;
-  color: #ff66c4;
+  background-color: $background-dark;  // Fondo oscuro para la notificación
+  color: $secondary-color;  // Color secundario para el texto
   padding: 15px;
   border-radius: 5px;
   opacity: 0;
@@ -51,7 +53,7 @@ html, body {
 
 // Estilo del header
 header {
-  background-color: #212121;
+  background-color: $header-background;  // Fondo semitransparente para el header
   padding: 10px 0;
   text-align: center;
 
@@ -65,13 +67,13 @@ header {
 
       li {
         a {
-          color: #ff66c4;
+          color: $secondary-color;  // Color secundario para los enlaces
           text-decoration: none;
           padding: 10px;
-          font-weight: bold;
+          font-weight: $font-weight-bold;  // Negrita para los enlaces
 
           &:hover {
-            color: #cb6ce6;
+            color: $primary-color;  // Color primario para el hover
           }
         }
       }
@@ -87,6 +89,10 @@ header {
   align-items: center;
   height: 80vh;
   gap: 20px; // Espacio entre el GIF y el texto
+  background: $background-glassy;  // Fondo semi-transparente (efecto glassy)
+  border-radius: $border-radius;  // Bordes redondeados
+  padding: 30px;
+  box-shadow: 0 0 15px $box-shadow-color;  // Sombra suave
 }
 
 // Contenedor del GIF
@@ -100,7 +106,7 @@ header {
   img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: $border-radius;  // Bordes redondeados en el GIF
   }
 }
 
@@ -110,33 +116,31 @@ main {
 
   h1 {
     font-size: 2.4em;
-    color: #e0e0e0;
+    color: $text-color;  // Texto claro
     margin-bottom: 20px;
   }
 
   // Estilo del rectángulo de desarrollo
   .development-rectangle {
-    background-color: #333333;
-    color: #e0e0e0;
+    background-color: $background-dark;  // Fondo oscuro
+    color: $text-color;  // Color de texto claro
     padding: 50px;
-    border-radius: 10px;
-    border: 2px solid #ff66c4;
-    width: 50%;
-    
+    border-radius: $border-radius;  // Bordes redondeados
+    border: 2px solid $secondary-color;  // Borde con el color secundario
     width: 500px;
 
     p {
       font-size: 1.5em;
-      color: #ff66c4;
+      color: $secondary-color;  // Color secundario para el texto
     }
   }
 }
 
 // Estilo del footer
 footer {
-  background-color: #212121;
+  background-color: $header-background;  // Fondo semitransparente para el footer
   padding: 10px;
   text-align: center;
-  color: #e0e0e0;
+  color: $text-color;  // Texto claro
   margin-top: 20px;
 }

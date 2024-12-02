@@ -1,19 +1,19 @@
 @charset "UTF-8";
-/* Contenedor del logo */
+/* Estilos para el contenedor del logo */
 .logo-container {
   text-align: center;
   padding: 20px 0;
 }
 .logo-container img {
-  max-width: 500px;
+  max-width: 300px;
   width: 100%;
   height: auto;
 }
 
 /* Estilos para el header */
 header {
-  background-color: #222222;
-  padding: 10px 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
   text-align: center;
 }
 header nav ul {
@@ -25,55 +25,58 @@ header nav ul {
   margin: 0;
 }
 header nav ul li a {
-  color: #cb6ce6;
+  color: #03dac5;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.2em;
 }
 header nav ul li a:hover {
-  color: #ff66c4;
+  color: #6200ea;
 }
 
-/* Contenedor principal de autenticación */
+/* Contenedor principal de Login con fondo y efecto Glassy */
 .auth-container {
   width: 400px;
-  margin: 40px auto; /* Ajuste del margen superior para centrado */
+  margin: 40px auto;
   padding: 30px;
-  background-color: #222222;
-  border-radius: 15px;
+  background-color: rgba(33, 33, 33, 0.7);
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
 .auth-container h1 {
   text-align: center;
-  color: #ff66c4;
+  color: #6200ea;
   margin-bottom: 20px;
 }
 .auth-container form {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 .auth-container form label {
   margin: 10px 0 5px;
   color: #ffffff;
-  font-weight: bold;
+  font-weight: 700;
 }
 .auth-container form input {
   padding: 12px;
-  border: 1px solid #555555;
+  border: 1px solid #444444;
   border-radius: 5px;
   background-color: #333333;
   color: #ffffff;
   font-size: 1em;
 }
 .auth-container form input:focus {
-  border-color: #ff66c4;
+  border-color: #6200ea;
   box-shadow: 0 0 5px rgba(100, 149, 237, 0.5);
   outline: none;
 }
 .auth-container form .btn-primary {
   padding: 12px;
   margin-top: 12px;
-  background-color: #ff66c4;
+  background-color: #6200ea;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -82,7 +85,7 @@ header nav ul li a:hover {
   transition: background-color 0.3s ease;
 }
 .auth-container form .btn-primary:hover {
-  background-color: #cb6ce6;
+  background-color: #03dac5;
 }
 .auth-container p {
   text-align: center;
@@ -90,9 +93,9 @@ header nav ul li a:hover {
   color: #ffffff;
 }
 .auth-container p a {
-  color: #cb6ce6;
+  color: #03dac5;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
 }
 .auth-container p a:hover {
   text-decoration: underline;
@@ -103,19 +106,21 @@ html, body {
   width: 100%;
   height: 100%;
   background-color: #121212;
+  background-image: url("../img/montaña.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   color: #ffffff;
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
   overflow-x: hidden;
 }
 
 /* Estilo del footer */
 footer {
-  background-color: #222222;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 15px;
   text-align: center;
   color: #ffffff;
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
   margin-top: 40px;
-}
-
-/*# sourceMappingURL=login.css.map */
+}/*# sourceMappingURL=login.css.map */

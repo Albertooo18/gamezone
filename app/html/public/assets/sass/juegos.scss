@@ -11,10 +11,14 @@
 html, body {
     width: 100%;
     height: 100%;
-    background-color: #121212 !important; // Fondo negro elegante
+    background-color: $background-color !important; // Fondo oscuro principal
     color: $text-color; // Texto claro para contraste
     font-family: Arial, sans-serif;
     overflow-x: hidden;
+    background: $page-background;  // Fondo de página con imagen
+    background-size: $background-size;
+    background-attachment: $background-attachment;
+    background-position: $background-position;
 }
 
 // Contenedor del logo
@@ -23,7 +27,7 @@ html, body {
     padding: 20px 0;
 
     img {
-        max-width: 500px; // Tamaño adecuado del logo
+        max-width: 300px; // Tamaño adecuado del logo
         width: 100%;
         height: auto;
     }
@@ -31,9 +35,10 @@ html, body {
 
 // Estilos para el header y la navegación
 header {
-    background-color: $header-background;
+    background-color: $header-background;  // Fondo semitransparente para el header
     padding: 10px 20px;
     text-align: center;
+    backdrop-filter: blur(10px);  // Efecto glassy (difumina el fondo)
 
     nav {
         ul {
@@ -45,14 +50,14 @@ header {
 
             li {
                 a {
-                    color: $text-color;
+                    color: $text-color;  // Color de los enlaces
                     text-decoration: none;
                     font-weight: bold;
                     font-size: 1.2em;
                     padding: 10px;
 
                     &:hover {
-                        color: $secondary-color;
+                        color: $secondary-color;  // Hover con color secundario
                     }
                 }
             }
@@ -64,17 +69,19 @@ header {
 main {
     padding: 40px 20px;
     text-align: center;
-    
+    //background: $background-glassy;  // Fondo semi-transparente para el efecto glassy
+    border-radius: $border-radius;  // Bordes redondeados
+    box-shadow: 0 0 15px $box-shadow-color;  // Sombra suave
 
     h1 {
         font-size: 2.5em;
-        color: $primary-color;
+        color: $primary-color;  // Color primario para el título
         margin-bottom: 15px;
     }
 
     .juegos-descripcion {
         font-size: 1.2em;
-        color: $secondary-color;
+        color: $secondary-color;  // Color secundario para la descripción
         margin-bottom: 30px;
     }
 
@@ -106,10 +113,11 @@ main {
 
 // Estilo del footer
 footer {
-    background-color: $header-background;
+    background-color: $header-background;  // Fondo semitransparente para el footer
     padding: 15px;
     text-align: center;
-    color: $text-color;
+    color: $text-color;  // Color de texto claro
     font-family: Arial, sans-serif;
     margin-top: 40px;
+    backdrop-filter: blur(10px);  // Efecto glassy en el footer
 }

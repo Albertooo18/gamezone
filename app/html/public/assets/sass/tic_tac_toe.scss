@@ -1,6 +1,6 @@
-/* SASS */
 @import 'variables';
 
+/* Estilos globales */
 * {
     margin: 0;
     padding: 0;
@@ -10,25 +10,31 @@
 html, body {
     width: 100%;
     height: 100%;
-    background-color: $background-color !important;
+    background-color: $background-color !important; /* Fondo oscuro de la página */
+    background-image: $page-background;  /* Fondo con imagen */
+    background-size: $background-size;
+    background-attachment: $background-attachment;
+    background-position: $background-position;
     color: $text-color;
-    font-family: Arial, sans-serif;
+    font-family: $font-family;
     overflow-x: hidden;
 }
 
+/* Contenedor del logo */
 .logo-container {
     text-align: center;
     padding: 20px 0;
 
     img {
-        max-width: 500px;
+        max-width: 300px;
         width: 100%;
         height: auto;
     }
 }
 
+/* Estilo para el header */
 header {
-    background-color: $header-background;
+    background-color: $header-background;  /* Fondo semitransparente */
     padding: 10px 20px;
     text-align: center;
 
@@ -55,6 +61,7 @@ header {
     }
 }
 
+/* Contenedor principal */
 .main-container {
     display: flex;
     justify-content: center;
@@ -64,6 +71,7 @@ header {
     gap: 60px;
 }
 
+/* Contenedor lateral */
 .side-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -75,20 +83,23 @@ header {
     gap: 25px;
 }
 
+/* Estilo para Tic-Tac-Toe */
 .tic-tac-toe-container {
     text-align: center;
-    background-color: $header-background;
+    background-color: $header-background;  /* Fondo semitransparente */
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
+/* Título de Tic-Tac-Toe */
 .tictactoe-titulo {
     color: $primary-color;
     font-size: 2.5em;
     margin-bottom: 20px;
 }
 
+/* Tablero del juego Tic-Tac-Toe */
 #tic-tac-toe-board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
@@ -116,6 +127,7 @@ header {
     }
 }
 
+/* Botón de reinicio */
 #reset-button {
     padding: 15px;
     margin-top: 20px;
@@ -132,6 +144,7 @@ header {
     }
 }
 
+/* Tarjeta de información */
 .info-card {
     background-color: $background-color;
     border: 3px solid $secondary-color;
@@ -154,26 +167,29 @@ header {
     font-size: 1.1em;
 }
 
+/* Estilo del footer */
 footer {
-    background-color: $header-background;
+    background-color: $header-background;  /* Fondo semitransparente */
     padding: 15px;
     text-align: center;
     color: $text-color;
     margin-top: 40px;
-    font-family: Arial, sans-serif;
+    font-family: $font-family;
 }
 
+/* Contenedor de Flip Coin */
 .coin-flip-container {
-    display: none; // Por defecto no se muestra
+    display: none;  /* Por defecto no se muestra */
     text-align: center;
     margin: 20px auto;
 
     img {
-        width: 150px; // Ajusta el tamaño del GIF aquí
+        width: 150px;  /* Ajusta el tamaño del GIF aquí */
         height: auto;
     }
 }
 
+/* Animación de voltear la moneda */
 @keyframes flipCoin {
     0% {
         transform: rotateY(0deg);
@@ -185,3 +201,54 @@ footer {
         transform: rotateY(360deg);
     }
 }
+
+// Estilo general de SweetAlert2
+.custom-popup {
+    background-color: rgba(33, 33, 33, 0.85) !important;  // Fondo oscuro y menos opaco
+    border-radius: $border-radius !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) !important;
+    padding: 20px !important;
+    color: $text-color !important;
+}
+
+// Alerta de victoria (conserva colores brillantes)
+.custom-popup.success {
+    background-color: rgba(33, 150, 243, 0.9) !important;  // Color azul brillante
+}
+
+.custom-confirm-button.success {
+    background-color: #2196F3 !important;  // Azul para éxito
+    color: #fff !important;
+}
+
+.custom-popup.error {
+    background-color: rgba(244, 67, 54, 0.9) !important;  // Color rojo para la derrota
+}
+
+.custom-confirm-button.error {
+    background-color: #F44336 !important;  // Rojo intenso para error
+    color: #fff !important;
+}
+
+// Alerta de empate
+.custom-popup.info {
+    background-color: rgba(76, 175, 80, 0.85) !important;  // Color verde para el empate
+}
+
+.custom-confirm-button.info {
+    background-color: #4CAF50 !important;  // Verde brillante
+    color: #fff !important;
+}
+
+.custom-confirm-button {
+    border-radius: $border-radius !important;
+    padding: 10px 20px !important;
+    transition: background-color 0.3s ease !important;
+    border: none !important;
+}
+
+.custom-confirm-button:hover {
+    background-color: lighten($primary-color, 10%) !important;
+}
+
+

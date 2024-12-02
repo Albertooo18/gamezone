@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +12,10 @@ html, body {
   color: #ffffff;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
+  background: url("../img/montaña.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .logo-container {
@@ -18,15 +23,17 @@ html, body {
   padding: 20px 0;
 }
 .logo-container img {
-  max-width: 500px;
+  max-width: 300px;
   width: 100%;
   height: auto;
 }
 
 header {
-  background-color: #222222;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
   text-align: center;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
 header nav ul {
   list-style: none;
@@ -43,21 +50,23 @@ header nav ul li a {
   padding: 10px;
 }
 header nav ul li a:hover {
-  color: #cb6ce6;
+  color: #03dac5;
 }
 
 main {
   padding: 40px 20px;
   text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 main h1 {
   font-size: 2.5em;
-  color: #ff66c4;
+  color: #6200ea;
   margin-bottom: 15px;
 }
 main .juegos-descripcion {
   font-size: 1.2em;
-  color: #cb6ce6;
+  color: #03dac5;
   margin-bottom: 30px;
 }
 main .galeria-juegos {
@@ -77,18 +86,18 @@ main .galeria-juegos .juego-imagen {
 }
 main .galeria-juegos .juego-imagen:hover {
   opacity: 1;
-  border: 2px solid #cb6ce6;
-  box-shadow: 0 0 15px #cb6ce6;
+  border: 2px solid #03dac5;
+  box-shadow: 0 0 15px #03dac5;
   transform: scale(1.05);
 }
 
 footer {
-  background-color: #222222;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 15px;
   text-align: center;
   color: #ffffff;
   font-family: Arial, sans-serif;
   margin-top: 40px;
-}
-
-/*# sourceMappingURL=juegos.css.map */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}/*# sourceMappingURL=juegos.css.map */

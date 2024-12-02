@@ -11,10 +11,14 @@
 html, body {
     width: 100%;
     height: 100%;
-    background-color: #121212;
-    color: #e0e0e0;
-    font-family: Arial, sans-serif;
+    background-color: $background-color;
+    color: $text-color;
+    font-family: $font-family;
     overflow-x: hidden;
+    background-image: $page-background;
+    background-size: $background-size;
+    background-attachment: $background-attachment;
+    background-position: $background-position;
 }
 
 // Contenedor del logo
@@ -23,7 +27,7 @@ html, body {
     padding: 20px 0;
 
     img {
-        max-width: 500px;
+        max-width: 300px;
         width: 100%;
         height: auto;
     }
@@ -31,9 +35,10 @@ html, body {
 
 // Estilo del header y navegación
 header {
-    background-color: #212121;
+    background-color: $header-background;
     padding: 10px 20px;
     text-align: center;
+    backdrop-filter: blur(10px); // Efecto glassy
 
     nav {
         ul {
@@ -45,14 +50,14 @@ header {
 
             li {
                 a {
-                    color: #ff66c4;
+                    color: $secondary-color;
                     text-decoration: none;
-                    font-weight: bold;
-                    font-size: 1.2em;
+                    font-weight: $font-weight-bold;
+                    font-size: $font-size-lg;
                     padding: 10px;
 
                     &:hover {
-                        color: #cb6ce6;
+                        color: $primary-color;
                     }
                 }
             }
@@ -60,76 +65,37 @@ header {
     }
 }
 
-// Ajustes en .info-sidebar-right para alineación correcta a la derecha
-// Ajustes en .info-sidebar-right para alineación vertical (columna)
-.info-sidebar-right {
-    width: 300px;
-    background-color: #333;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    color: #ffffff;
-    font-size: 1em;
-    text-align: center; /* Centrar el texto dentro de la caja */
-
-    display: flex; /* Activa Flexbox */
-    flex-direction: column; /* Organiza los elementos en una columna */
-    align-items: center; /* Centra los elementos dentro del contenedor */
-
-    h3 {
-        font-size: 1.4em;
-        margin-bottom: 10px;
-    }
-
-    ul {
-        list-style: none;
-        padding-left: 0;
-        line-height: 1.8em;
-    }
-
-    /* Información del puntaje */
-    #player-score,
-    #enemies-destroyed,
-    #power-ups {
-        margin: 10px 0; /* Espaciado entre cada elemento */
-        font-size: 1.2em;
-    }
-
-    #player-score {
-        font-size: 1.4em; /* Mayor tamaño para el puntaje */
-    }
-}
-
 // Contenedor principal con grid
 .main-container {
-    width: 100%; /* Ocupa todo el ancho disponible */
-    max-width: 1800px; /* Limita el ancho máximo */
+    width: 100%;
+    max-width: 1800px;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr; /* 1 columna lateral, 2 columnas para el juego, 1 lateral */
+    grid-template-columns: 1fr 2fr 1fr;
     gap: 20px;
     padding: 20px;
     align-items: start;
-    margin: 0 auto; /* Centra el contenedor */
+    margin: 0 auto;
 
     .button-container {
         display: flex;
-        justify-content: center; /* Centra el botón */
+        justify-content: center;
         gap: 20px;
-        margin-bottom: 20px; /* Separación adicional si es necesario */
+        margin-bottom: 20px;
     }
 
     .game-button {
         padding: 10px 20px;
         font-size: 1.2em;
-        color: #ffffff;
-        background-color: #ff66c4;
+        color: $text-color;
+        background-color: $button-primary;
         border: none;
-        border-radius: 5px;
+        border-radius: $border-radius;
         cursor: pointer;
         transition: background-color 0.3s;
+        backdrop-filter: blur(5px); // Efecto glassy
 
         &:hover {
-            background-color: #cb6ce6;
+            background-color: $primary-color;
         }
     }
 
@@ -137,10 +103,11 @@ header {
         position: relative;
         width: 800px;
         height: 600px;
-        background-color: #000; // Negro para diferenciar el área de juego
-        border: 2px solid #ff66c4;
-        border-radius: 10px;
+        background-color: #000;
+        border: 2px solid $primary-color;
+        border-radius: $border-radius;
         overflow: hidden;
+        backdrop-filter: blur(10px); // Efecto glassy
     }
 
     #player {
@@ -149,7 +116,7 @@ header {
         left: 50%;
         width: 40px;
         height: 40px;
-        background-color: #ff66c4;
+        background-color: $secondary-color;
         transform: translateX(-50%);
     }
 
@@ -188,7 +155,7 @@ header {
     }
 
     .item.speed {
-        background-color: #ff66c4;
+        background-color: $secondary-color;
     }
 
     .item.bulletSpeed {
@@ -200,43 +167,42 @@ header {
     }
 
     // Contenedores laterales para controles e información del juego
-    .info-sidebar {
-        width: 350px;
-        background-color: #333;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        color: #ffffff;
-        font-size: 1.1em;
-        left: 40px;
-
-        h3 {
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-            line-height: 1.8em;
-        }        
-    }
-
-    // Contenedor lateral para controles e información del puntaje (a la derecha)
+    .info-sidebar,
     .info-sidebar-right {
-        grid-column: 3 / span 1; /* Coloca la info-sidebar-right a la derecha */
-        display: flex;
-        flex-direction: column;  /* Alineación vertical */
-        justify-content: flex-start;  /* Evita que se apilen los elementos hacia abajo */
+        background-color: $background-dark;
+        padding: 15px;
+        border-radius: $border-radius;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        color: $text-color;
+        font-size: 1.1em;
+        backdrop-filter: blur(10px); // Efecto glassy
     }
+
+    .info-sidebar-right {
+        grid-column: 3 / span 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    h3 {
+        font-size: 1.4em;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+        line-height: 1.8em;
+    }        
 }
 
 // Estilo del footer
 footer {
-    background-color: #212121;
+    background-color: $header-background;
     padding: 10px;
     text-align: center;
-    color: #e0e0e0;
+    color: $text-color;
     margin-top: 20px;
 }
 
@@ -254,7 +220,6 @@ footer {
 .enemy.yellow {
     background-color: #ffff00;
     animation: moveEnemy 3s linear infinite;
-    transition: left 0.5s ease-in-out;
 }
 
 @keyframes moveEnemy {

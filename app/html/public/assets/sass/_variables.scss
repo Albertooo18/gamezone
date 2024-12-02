@@ -1,13 +1,28 @@
-$background-color: #121212;
-$text-color: #ffffff;
-$header-background: #222222;
-$aside-background: #333333;
-$primary-color: #ff66c4;
-$secondary-color: #cb6ce6;
-$notification-background: #444444;
-$notification-text-color: #ffffff;
+// Variables de colores
+$background-color: #121212;  // Fondo principal de la página
+$background-glassy: rgba(33, 33, 33, 0.7);  // Fondo semi-transparente para el efecto glassy (puede aplicarse a elementos como columnas o contenedores)
+$background-dark: #333333;  // Fondo oscuro utilizado en varios elementos (por ejemplo, inputs)
+$page-background: url('../img/montaña.jpg');  // Fondo de la página con imagen
+$header-background: rgba(0, 0, 0, 0.5);  // Fondo semitransparente para el header (efecto glassy)
+$primary-color: #6200ea;  // Color primario (utilizado para resaltar elementos importantes)
+$secondary-color: #03dac5;  // Color secundario (usado en enlaces, botones)
+$text-color: #ffffff;  // Color de texto blanco
+$border-color: #444444;  // Color para bordes de inputs, tablas, etc.
+$box-shadow-color: rgba(0, 0, 0, 0.2);  // Color de la sombra
+$button-primary: $primary-color;  // Color principal para botones
+$font-family: 'Arial', sans-serif;  // Familia tipográfica
+$font-weight-bold: 700;  // Peso de la fuente para texto en negrita
+$font-size-lg: 1.2em;  // Tamaño grande para textos destacados
 
-$background-dark: #1e1e1e; // Usado en fondos oscuros, como en paneles de cuenta
-$button-primary: #cb6ce6;
-$button-secondary: #888888;
-$accent-color: #cb6ce6; // Color de acento para títulos y bordes
+// Variables para bordes y sombras
+$border-radius: 10px;  // Radio para bordes redondeados
+$box-shadow-color: rgba(0, 0, 0, 0.2);  // Sombra difusa
+
+// Otros estilos
+$background-size: cover;  // Tamaño del fondo (cubrir toda la pantalla)
+$background-attachment: fixed;  // Fondo fijo para scroll
+$background-position: center;  // Fondo centrado
+$button-primary: #6200ea;  // Color primario de botones
+
+
+

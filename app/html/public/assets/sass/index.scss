@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'variables'; // Importar las variables para usar colores y configuraciones globales
 
 // Reinicio de márgenes y relleno
 * {
@@ -7,14 +7,18 @@
     box-sizing: border-box;
 }
 
-// Estilo del body y html
+// Estilo global para html y body
 html, body {
     width: 100%;
     height: 100%;
-    background-color: #121212;
-    color: #e0e0e0;
-    font-family: Arial, sans-serif;
+    background-color: $background-color;  // Fondo principal de la página
+    color: $text-color;  // Texto claro
+    font-family: $font-family;
     overflow-x: hidden;
+    background: $page-background;  // Fondo con imagen
+    background-size: $background-size;  // Fondo cubre toda la pantalla
+    background-attachment: $background-attachment; // Fondo fijo para el scroll
+    background-position: $background-position;  // Centrar la imagen de fondo
 }
 
 // Contenedor del logo
@@ -23,7 +27,7 @@ html, body {
     padding: 20px 0;
 
     img {
-        max-width: 400px;
+        max-width: 300px;
         width: 100%;
         height: auto;
     }
@@ -31,9 +35,10 @@ html, body {
 
 // Estilo del header y navegación
 header {
-    background-color: #212121;
+    background-color: $header-background;  // Fondo semitransparente para el header
     padding: 10px 20px;
     text-align: center;
+    backdrop-filter: blur(10px); // Efecto glassy (difumina el fondo)
 
     nav {
         ul {
@@ -45,14 +50,14 @@ header {
 
             li {
                 a {
-                    color: #ff66c4;
+                    color: $primary-color;  // Color primario de enlaces
                     text-decoration: none;
                     font-weight: bold;
                     font-size: 1.2em;
                     padding: 10px;
 
                     &:hover {
-                        color: #cb6ce6;
+                        color: $secondary-color;  // Color secundario en el hover
                     }
                 }
             }
@@ -77,12 +82,13 @@ header {
 
 // Estilo del aside
 aside {
-    background-color: #333333;
+    background-color: $background-glassy;  // Fondo semi-transparente para el aside
     padding: 20px;
-    border-radius: 10px;
+    border-radius: $border-radius;  // Bordes redondeados
+    backdrop-filter: blur(10px);  // Efecto glassy (difumina el fondo)
 
     h2 {
-        color: #ff66c4;
+        color: $primary-color;  // Color primario para los títulos
         margin-bottom: 15px;
     }
 
@@ -94,18 +100,18 @@ aside {
             margin-bottom: 10px;
 
             a {
-                color: #e0e0e0;
+                color: $text-color;  // Texto claro
                 text-decoration: none;
 
                 &:hover {
-                    color: #cb6ce6;
+                    color: $secondary-color;  // Color secundario en el hover
                 }
             }
         }
     }
 }
 
-// Estilo de la sección de edificios
+/* Estilo de la sección de edificios */
 .building-section {
     display: grid;
     grid-template-columns: 1fr; // Una columna para que las imágenes sean más grandes
@@ -113,22 +119,23 @@ aside {
 
     .building {
         display: flex;
-        background-color: #212121;
-        border-radius: 10px;
+        background: $background-glassy;  // Fondo semi-transparente (efecto glassy)
+        border-radius: $border-radius;  // Bordes redondeados
         overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 5px 15px $box-shadow-color;  // Sombra suave
         align-items: center;
+        backdrop-filter: blur(10px);  // Efecto de blur en el fondo
 
         .building-img {
-            width: 200px; // Tamaño adecuado para mantenerlas consistentes
+            width: 200px;  // Tamaño adecuado para mantenerlas consistentes
             height: auto;
             border-radius: 10px 0 0 10px;
             transition: all 0.3s ease;
 
             &:hover {
                 transform: scale(1.05);
-                box-shadow: 0 0 15px #cb6ce6;
-                border: 2px solid #cb6ce6;
+                box-shadow: 0 0 15px $secondary-color;  // Sombra con el color secundario
+                border: 2px solid $secondary-color;  // Borde al pasar el mouse
             }
         }
 
@@ -137,12 +144,12 @@ aside {
             text-align: left;
 
             h3 {
-                color: #ff66c4;
+                color: $primary-color;  // Color de los títulos
                 margin-bottom: 10px;
             }
 
             p {
-                color: #e0e0e0;
+                color: $text-color;  // Texto claro
             }
         }
     }
@@ -150,9 +157,10 @@ aside {
 
 // Estilo del footer
 footer {
-    background-color: #212121;
+    background-color: $header-background;  // Fondo semitransparente para el footer
     padding: 10px;
     text-align: center;
-    color: #e0e0e0;
+    color: $text-color;  // Texto claro
     margin-top: 20px;
+    backdrop-filter: blur(10px);  // Efecto glassy (difumina el fondo)
 }

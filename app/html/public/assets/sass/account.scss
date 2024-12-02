@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'variables';  // Importa las variables definidas previamente
 
 * {
     margin: 0;
@@ -9,10 +9,14 @@
 html, body {
     width: 100%;
     height: 100%;
-    background-color: $background-color;
-    color: $text-color;
-    font-family: Arial, sans-serif;
+    background-color: $background-color;  // Fondo principal de la página
+    color: $text-color;  // Blanco para el texto
+    font-family: $font-family;  // Familia tipográfica
     overflow-x: hidden;
+    background: $page-background;  // Fondo de la página con imagen
+    background-size: $background-size;
+    background-attachment: $background-attachment;
+    background-position: $background-position;
 }
 
 .logo-container {
@@ -20,16 +24,17 @@ html, body {
     padding: 20px 0;
 
     img {
-        max-width: 600px;
+        max-width: 300px;
         width: 100%;
         height: auto;
     }
 }
 
 header {
-    background-color: $header-background;
+    background-color: $header-background;  // Fondo del header
     padding: 10px 20px;
     text-align: center;
+    backdrop-filter: blur(10px);  // Efecto glassy
 
     nav {
         ul {
@@ -41,12 +46,12 @@ header {
 
             li {
                 a {
-                    color: $text-color;
+                    color: $text-color;  // Color blanco en los enlaces
                     text-decoration: none;
                     padding: 10px;
 
                     &:hover {
-                        color: $secondary-color;
+                        color: $secondary-color;  // Color cuando el enlace se hovea
                     }
                 }
             }
@@ -62,62 +67,68 @@ main {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 
+    .column-1, .column-2, .column-3 {
+        background: $background-glassy;  // Fondo semi-transparente (efecto glassy)
+        border-radius: $border-radius;  // Bordes redondeados
+        box-shadow: 0 5px 15px $box-shadow-color;  // Sombra suave
+        padding: 20px;
+        color: $text-color;
+        backdrop-filter: blur(10px);  // Efecto de blur en el fondo
+    }
+
     .column-1 {
-        background-color: $aside-background;
         color: $text-color;
         padding: 20px;
         text-align: center;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        border-radius: $border-radius;
+        box-shadow: 0 5px 15px $box-shadow-color;
         display: flex;
         flex-direction: column;
         align-items: center;
-
+        justify-content: center;  // Asegura que todo esté centrado verticalmente
+    
         .profile-text {
             margin-bottom: 10px;
-            font-weight: bold;
-            font-size: 1.2em;
+            font-weight: $font-weight-bold;
+            font-size: $font-size-lg;
             color: $text-color;
             text-align: center;
         }
-
+    
         .profile-picture {
-            width: 200px;  // Tamaño fijo para el ancho
-            height: 200px; // Tamaño fijo para la altura
-            border-radius: 50%; // Borde circular
-            border: 3px solid $secondary-color; // Borde con el color secundario
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 3px solid $secondary-color;
             margin-bottom: 20px;
-            background-color: $background-dark; // Fondo oscuro por defecto si no hay imagen
-            object-fit: cover; // Asegura que la imagen se ajuste dentro del marco, recortando si es necesario
-            display: block; // Asegura que el marco de la imagen siempre sea visible
+            background-color: $background-dark;  // Fondo oscuro para la imagen
+            object-fit: cover;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
-
+    
         .change-picture-btn {
             padding: 10px;
-            background-color: $button-primary;
-            color: #ffffff;
+            background-color: $button-primary;  // Color del botón
+            color: $text-color;  // Color del texto en el botón
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
             margin-top: 10px;
-
+    
             &:hover {
-                background-color: lighten($button-primary, 10%);
+                background-color: lighten($button-primary, 10%);  // Efecto hover
             }
         }
     }
 
     .column-2 {
-        background-color: $background-dark;
-        color: $text-color;
-        padding: 20px;
         text-align: left;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 
         h2 {
-            color: $primary-color;
+            color: $primary-color;  // Color de los subtítulos
             margin-bottom: 20px;
         }
 
@@ -127,65 +138,54 @@ main {
             gap: 15px;
 
             label {
-                font-weight: bold;
+                font-weight: $font-weight-bold;
                 color: $text-color;
             }
 
             input {
                 padding: 10px;
-                border: 1px solid #555555;
+                border: 1px solid $border-color;  // Color de los bordes
                 border-radius: 5px;
-                background-color: #333333;
+                background-color: $background-dark;  // Fondo oscuro para los inputs
                 color: $text-color;
             }
 
             .save-changes-btn {
                 padding: 10px;
-                background-color: $button-primary;
-                color: #ffffff;
+                background-color: $button-primary;  // Botón para guardar cambios
+                color: $text-color;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
                 transition: background-color 0.3s ease;
 
                 &:hover {
-                    background-color: lighten($button-primary, 10%);
+                    background-color: lighten($button-primary, 10%);  // Efecto hover en el botón
                 }
             }
         }
     }
 
     .column-3 {
-        background-color: $background-dark;
-        color: $text-color;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-
-        h2 {
-            color: $primary-color;
-            margin-bottom: 20px;
-        }
-
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
 
             th, td {
-                border: 1px solid #555555;
+                border: 1px solid $border-color;
                 padding: 10px;
                 text-align: center;
             }
 
             th {
-                background-color: $header-background;
+                background-color: $header-background;  // Fondo del header de la tabla
                 color: $text-color;
-                font-weight: bold;
+                font-weight: $font-weight-bold;
             }
 
             td {
-                background-color: $background-dark;
+                background-color: $background-dark;  // Fondo oscuro de las celdas
                 color: $text-color;
             }
         }
@@ -198,25 +198,25 @@ main {
 
     .logout-btn {
         padding: 15px;
-        background-color: $secondary-color;
-        color: #ffffff;
+        background-color: $secondary-color;  // Botón de logout
+        color: $text-color;
         border: none;
-        border-radius: 10px;
+        border-radius: $border-radius;  // Bordes redondeados
         cursor: pointer;
         font-size: 1em;
         transition: background-color 0.3s ease;
 
         &:hover {
-            background-color: lighten($secondary-color, 10%);
+            background-color: lighten($secondary-color, 10%);  // Efecto hover en el botón de logout
         }
     }
 }
 
 footer {
-    background-color: $header-background;
+    background-color: $header-background;  // Fondo del footer
     padding: 15px;
     text-align: center;
     color: $text-color;
     margin-top: 40px;
-    font-family: Arial, sans-serif;
+    font-family: $font-family;  // Familia tipográfica
 }

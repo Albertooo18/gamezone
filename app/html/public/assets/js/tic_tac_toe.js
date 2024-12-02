@@ -98,59 +98,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const findWinningMove = () => findCriticalMove('O');
 
     // Comprobar si hay un ganador
-    const checkWinner = () => {
-        const winningCombinations = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8],
-            [0, 3, 6], [1, 4, 7], [2, 5, 8],
-            [0, 4, 8], [2, 4, 6]
-        ];
-        let winner = null;
+    // Comprobar si hay un ganador
+const checkWinner = () => {
+    const winningCombinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+    let winner = null;
 
-        winningCombinations.forEach((combination) => {
-            const [a, b, c] = combination;
-            if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
-                winner = gameState[a];
-            }
-        });
+    // Comprobar las combinaciones ganadoras
+    winningCombinations.forEach((combination) => {
+        const [a, b, c] = combination;
+        if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+            winner = gameState[a];
+        }
+    });
 
-        if (winner) {
-            if (winner === 'X') {
-                showAlert('¡Felicidades!', 'Has ganado.', 'success').then(() => {
-                    playerScore += 10;
-                    consecutiveWins++;
-                    if (consecutiveWins >= 2) {
-                        difficultyLevel = Math.min(3, difficultyLevel + 1);
-                        consecutiveWins = 0;
-                    }
-                    updateScore();
-                    resetGame();
-                    currentPlayer = 'O'; // La IA comienza después de ganar
-                    iaMove();
-                });
-            } else {
-                showAlert('Derrota', 'La IA ha ganado. Inténtalo de nuevo.', 'error').then(() => {
-                    totalLosses++;
+    // Si hay un ganador
+    if (winner) {
+        if (winner === 'X') {
+            showAlert('¡Felicidades!', 'Has ganado.', 'success').then(() => {
+                playerScore += 10;
+                consecutiveWins++;
+                if (consecutiveWins >= 2) {
+                    difficultyLevel = Math.min(3, difficultyLevel + 1);
                     consecutiveWins = 0;
-                    updateScore();
+                }
+                updateScore();
+                resetGame();
+                currentPlayer = 'O'; // La IA comienza después de ganar
+                iaMove();
+            });
+        } else {
+            showAlert('Derrota', 'La IA ha ganado. Inténtalo de nuevo.', 'error').then(() => {
+                totalLosses++;
+                consecutiveWins = 0;
+                updateScore();
 
-                    if (totalLosses >= 3) {
-                        endGame();
-                    } else {
-                        resetGame();
-                        currentPlayer = 'X';
-                    }
-                });
-            }
-            return true;
+                if (totalLosses >= 3) {
+                    endGame();
+                } else {
+                    resetGame();
+                    currentPlayer = 'X';
+                }
+            });
         }
+        return true;
+    }
 
-        if (!gameState.includes(null)) {
-            showCoinFlip();
-            return true;
-        }
+    // Si no hay ganador y el tablero está lleno, es un empate
+    if (!gameState.includes(null)) {
+        showCoinFlip(); // Llamar la función de la moneda
+        return true;
+    }
 
-        return false;
-    };
+    return false;
+};
 
     // Mostrar una alerta con SweetAlert2 y devolver una promesa
     const showAlert = (title, text, icon) => {
@@ -158,7 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
             title: title,
             text: text,
             icon: icon,
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            customClass: {
+                popup: 'custom-popup', // Clase personalizada para el fondo
+                confirmButton: 'custom-confirm-button' // Clase personalizada para el botón
+            }
         });
     };
 
@@ -169,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Mostrar el gif de la moneda en el centro con animación
         const coinGif = document.createElement('img');
-        coinGif.src = '../public/assets/img/coin.gif';
+        coinGif.src = '../public/assets/img/coin.gif';  // Asegúrate de que la ruta al gif esté bien
         coinGif.alt = 'Moneda girando';
         coinGif.style.width = '165px';  // Un 10% más grande
         coinGif.style.height = '165px'; // Un 10% más grande
@@ -190,18 +198,23 @@ document.addEventListener('DOMContentLoaded', () => {
             coinGif.style.transform = 'translate(-50%, -50%) scale(0)';
             setTimeout(() => {
                 document.body.removeChild(coinGif);
+                // Notificación de empate con el estilo adecuado
                 Swal.fire({
                     title: 'Empate',
                     text: message,
                     icon: 'info',
-                    confirmButtonText: 'OK'
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        popup: 'custom-popup', // Asegurando que usa la clase personalizada
+                        confirmButton: 'custom-confirm-button' // También aplica el estilo personalizado al botón
+                    }
                 }).then(() => {
                     resetGame();
                     if (coinResult === 'sello') {
                         currentPlayer = 'O';
-                        iaMove();
+                        iaMove();  // IA comienza después del empate
                     } else {
-                        currentPlayer = 'X';
+                        currentPlayer = 'X';  // Jugador comienza después del empate
                     }
                 });
             }, 500);

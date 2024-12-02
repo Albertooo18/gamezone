@@ -1,0 +1,83 @@
+/* Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(Imagenes/montaña.jpg) no-repeat center center fixed; /* Centra la imagen y la hace fija */
+    background-size: cover; /* Asegura que la imagen ocupe todo el área visible */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* La altura será siempre la del viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: white; /* Cambiar el texto a blanco */
+    margin: 0;
+}
+
+/* Encabezado */
+.titulo {
+    background: none;
+    margin: 20px auto;
+    padding: 10px;
+    width: 100vw;
+    color: #bbbdd3;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.titulo h1 {
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    font-style: oblique;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    right: 700px;
+    top: 25px;
+}
+
+.titulo h2 {
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    font-style: oblique;
+    color: white;
+    font-size: 40px;
+}
+
+.caja {
+    background-color: rgba(255, 255, 255, 0.047);
+    backdrop-filter: blur(15px) brightness(1.1);
+    -webkit-backdrop-filter: blur(15px) brightness(1.1);
+    display: flex;
+    justify-content: center; /* Centrar el contenido */
+    align-items: center;
+    gap: 20px;
+    width: 100vw; /* Asegura que cubra todo el ancho del viewport */
+    height: 80px;
+    padding: 20px 0; /* Ajusta solo el padding vertical */
+    border-radius: 0; /* Elimina cualquier borde redondeado */
+    margin: 0; /* Elimina márgenes que puedan causar el desplazamiento */
+    box-sizing: border-box;
+    position: relative; /* Por si hay elementos flotantes que afectan su posición */
+}
+
+.caja a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.caja a:hover {
+    background:rgba(255, 255, 255, 0.068);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* Sombra para dar profundidad */
+    backdrop-filter: blur(15px); /* Desenfoque del fondo */
+    color: white;
+}
+

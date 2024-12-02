@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -9,8 +10,12 @@ html, body {
   height: 100%;
   background-color: #121212;
   color: #ffffff;
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
   overflow-x: hidden;
+  background: url("../img/montaña.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .logo-container {
@@ -18,15 +23,17 @@ html, body {
   padding: 20px 0;
 }
 .logo-container img {
-  max-width: 600px;
+  max-width: 300px;
   width: 100%;
   height: auto;
 }
 
 header {
-  background-color: #222222;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
   text-align: center;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
 header nav ul {
   list-style: none;
@@ -41,7 +48,7 @@ header nav ul li a {
   padding: 10px;
 }
 header nav ul li a:hover {
-  color: #cb6ce6;
+  color: #03dac5;
 }
 
 main {
@@ -52,37 +59,49 @@ main {
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
+main .column-1, main .column-2, main .column-3 {
+  background: rgba(33, 33, 33, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  color: #ffffff;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
 main .column-1 {
-  background-color: #333333;
   color: #ffffff;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 main .column-1 .profile-text {
   margin-bottom: 10px;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.2em;
   color: #ffffff;
   text-align: center;
 }
 main .column-1 .profile-picture {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  border: 3px solid #cb6ce6;
+  border: 3px solid #03dac5;
   margin-bottom: 20px;
-  background-color: #1e1e1e;
-  object-fit: cover;
+  background-color: #333333;
+  -o-object-fit: cover;
+     object-fit: cover;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 main .column-1 .change-picture-btn {
   padding: 10px;
-  background-color: #cb6ce6;
+  background-color: #6200ea;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -91,18 +110,13 @@ main .column-1 .change-picture-btn {
   margin-top: 10px;
 }
 main .column-1 .change-picture-btn:hover {
-  background-color: #da98ed;
+  background-color: #7c1eff;
 }
 main .column-2 {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  padding: 20px;
   text-align: left;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 main .column-2 h2 {
-  color: #ff66c4;
+  color: #6200ea;
   margin-bottom: 20px;
 }
 main .column-2 form {
@@ -111,19 +125,19 @@ main .column-2 form {
   gap: 15px;
 }
 main .column-2 form label {
-  font-weight: bold;
+  font-weight: 700;
   color: #ffffff;
 }
 main .column-2 form input {
   padding: 10px;
-  border: 1px solid #555555;
+  border: 1px solid #444444;
   border-radius: 5px;
   background-color: #333333;
   color: #ffffff;
 }
 main .column-2 form .save-changes-btn {
   padding: 10px;
-  background-color: #cb6ce6;
+  background-color: #6200ea;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -131,18 +145,7 @@ main .column-2 form .save-changes-btn {
   transition: background-color 0.3s ease;
 }
 main .column-2 form .save-changes-btn:hover {
-  background-color: #da98ed;
-}
-main .column-3 {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-main .column-3 h2 {
-  color: #ff66c4;
-  margin-bottom: 20px;
+  background-color: #7c1eff;
 }
 main .column-3 table {
   width: 100%;
@@ -150,17 +153,17 @@ main .column-3 table {
   margin-top: 10px;
 }
 main .column-3 table th, main .column-3 table td {
-  border: 1px solid #555555;
+  border: 1px solid #444444;
   padding: 10px;
   text-align: center;
 }
 main .column-3 table th {
-  background-color: #222222;
+  background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
-  font-weight: bold;
+  font-weight: 700;
 }
 main .column-3 table td {
-  background-color: #1e1e1e;
+  background-color: #333333;
   color: #ffffff;
 }
 
@@ -170,7 +173,7 @@ main .column-3 table td {
 }
 .logout-container .logout-btn {
   padding: 15px;
-  background-color: #cb6ce6;
+  background-color: #03dac5;
   color: #ffffff;
   border: none;
   border-radius: 10px;
@@ -179,16 +182,14 @@ main .column-3 table td {
   transition: background-color 0.3s ease;
 }
 .logout-container .logout-btn:hover {
-  background-color: #da98ed;
+  background-color: #14fce5;
 }
 
 footer {
-  background-color: #222222;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 15px;
   text-align: center;
   color: #ffffff;
   margin-top: 40px;
-  font-family: Arial, sans-serif;
-}
-
-/*# sourceMappingURL=account.css.map */
+  font-family: "Arial", sans-serif;
+}/*# sourceMappingURL=account.css.map */

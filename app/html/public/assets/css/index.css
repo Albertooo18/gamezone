@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -8,9 +9,13 @@ html, body {
   width: 100%;
   height: 100%;
   background-color: #121212;
-  color: #e0e0e0;
-  font-family: Arial, sans-serif;
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
   overflow-x: hidden;
+  background: url("../img/montaña.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .logo-container {
@@ -18,15 +23,17 @@ html, body {
   padding: 20px 0;
 }
 .logo-container img {
-  max-width: 400px;
+  max-width: 300px;
   width: 100%;
   height: auto;
 }
 
 header {
-  background-color: #212121;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
   text-align: center;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
 header nav ul {
   list-style: none;
@@ -36,14 +43,14 @@ header nav ul {
   padding: 0;
 }
 header nav ul li a {
-  color: #ff66c4;
+  color: #6200ea;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.2em;
   padding: 10px;
 }
 header nav ul li a:hover {
-  color: #cb6ce6;
+  color: #03dac5;
 }
 
 .main-container {
@@ -62,12 +69,14 @@ header nav ul li a:hover {
 }
 
 aside {
-  background-color: #333333;
+  background-color: rgba(33, 33, 33, 0.7);
   padding: 20px;
   border-radius: 10px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
 aside h2 {
-  color: #ff66c4;
+  color: #6200ea;
   margin-bottom: 15px;
 }
 aside ul {
@@ -78,13 +87,14 @@ aside ul li {
   margin-bottom: 10px;
 }
 aside ul li a {
-  color: #e0e0e0;
+  color: #ffffff;
   text-decoration: none;
 }
 aside ul li a:hover {
-  color: #cb6ce6;
+  color: #03dac5;
 }
 
+/* Estilo de la sección de edificios */
 .building-section {
   display: grid;
   grid-template-columns: 1fr;
@@ -92,11 +102,13 @@ aside ul li a:hover {
 }
 .building-section .building {
   display: flex;
-  background-color: #212121;
+  background: rgba(33, 33, 33, 0.7);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   align-items: center;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
 .building-section .building .building-img {
   width: 200px;
@@ -106,27 +118,27 @@ aside ul li a:hover {
 }
 .building-section .building .building-img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px #cb6ce6;
-  border: 2px solid #cb6ce6;
+  box-shadow: 0 0 15px #03dac5;
+  border: 2px solid #03dac5;
 }
 .building-section .building .building-info {
   padding: 20px;
   text-align: left;
 }
 .building-section .building .building-info h3 {
-  color: #ff66c4;
+  color: #6200ea;
   margin-bottom: 10px;
 }
 .building-section .building .building-info p {
-  color: #e0e0e0;
+  color: #ffffff;
 }
 
 footer {
-  background-color: #212121;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
   text-align: center;
-  color: #e0e0e0;
+  color: #ffffff;
   margin-top: 20px;
-}
-
-/*# sourceMappingURL=index.css.map */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}/*# sourceMappingURL=index.css.map */
