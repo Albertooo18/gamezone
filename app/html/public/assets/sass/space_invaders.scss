@@ -101,8 +101,8 @@ header {
 
     #game-area {
         position: relative;
-        width: 800px;
-        height: 600px;
+        width: 840px; /* Aumentado en un 10% */
+        height: 620px; /* Aumentado en un 10% */
         background-color: #000;
         border: 2px solid $primary-color;
         border-radius: $border-radius;
@@ -114,56 +114,63 @@ header {
         position: absolute;
         bottom: 20px;
         left: 50%;
-        width: 40px;
-        height: 40px;
-        background-color: $secondary-color;
+        width: 54px; /* Aumentado en un 10% */
+        height: 54px; /* Aumentado en un 10% */
+        background-image: url('../img/space/nave.png'); /* Asigna la imagen de la nave */
+        background-size: cover;
         transform: translateX(-50%);
     }
 
     .bullet {
         position: absolute;
-        width: 10px;
-        height: 20px;
+        width: 11px; /* Aumentado en un 10% */
+        height: 22px; /* Aumentado en un 10% */
         background-color: #00ff00;
         border-radius: 5px;
     }
 
     .enemy {
         position: absolute;
-        width: 40px;
-        height: 40px;
+        width: 44px; /* Aumentado en un 10% */
+        height: 44px; /* Aumentado en un 10% */
         border-radius: 5px;
+        background-size: cover; /* Asegúrate de que esta línea no esté comentada */
+        transform: scale(1.1); /* Aumentado en un 10% */
     }
-
+    
     .enemy.red {
-        background-color: #ff0000;
+        background-image: url('../img/space/rojo.png');
     }
-
+    
     .enemy.blue {
-        background-color: #0000ff;
+        background-image: url('../img/space/azul.png');
     }
-
+    
     .enemy.yellow {
-        background-color: #ffff00;
+        background-image: url('../img/space/amarillo.png');
     }
 
     .item {
         position: absolute;
-        width: 30px;
-        height: 30px;
+        width: 33px; /* Aumentado en un 10% */
+        height: 33px; /* Aumentado en un 10% */
         border-radius: 50%;
+        transform: scale(1.1); /* Aumentado en un 10% */
     }
 
     .item.speed {
-        background-color: $secondary-color;
+        background-image: url('../img/space/velocidad.png'); /* Power-up de velocidad */
+        background-size: cover;
     }
-
+    
     .item.bulletSpeed {
-        background-color: #00ffff;
+        background-image: url('../img/space/velocidadbalas.png'); /* Power-up de velocidad de balas */
+        background-size: cover;
     }
-
+    
     .item.bulletDamage {
-        background-color: #ff9900;
+        background-image: url('../img/space/daño.png'); /* Power-up de daño */
+        background-size: cover;
     }
 
     // Contenedores laterales para controles e información del juego
@@ -208,17 +215,17 @@ footer {
 
 // Ajuste de velocidad de enemigos y colores para mayor visibilidad
 .enemy.red {
-    background-color: #ff0000;
+    //background-color: #ff0000;
     animation: moveEnemy 5s linear infinite;
 }
 
 .enemy.blue {
-    background-color: #0000ff;
+    //background-color: #0000ff;
     animation: moveEnemy 4s linear infinite;
 }
 
 .enemy.yellow {
-    background-color: #ffff00;
+    //background-color: #ffff00;
     animation: moveEnemy 3s linear infinite;
 }
 

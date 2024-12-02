@@ -32,8 +32,7 @@ header {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 20px;
   text-align: center;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 header nav ul {
   list-style: none;
@@ -78,68 +77,73 @@ header nav ul li a:hover {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 .main-container .game-button:hover {
   background-color: #6200ea;
 }
 .main-container #game-area {
   position: relative;
-  width: 800px;
-  height: 600px;
+  width: 840px; /* Aumentado en un 10% */
+  height: 620px; /* Aumentado en un 10% */
   background-color: #000;
   border: 2px solid #6200ea;
   border-radius: 10px;
   overflow: hidden;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 .main-container #player {
   position: absolute;
   bottom: 20px;
   left: 50%;
-  width: 40px;
-  height: 40px;
-  background-color: #03dac5;
+  width: 54px; /* Aumentado en un 10% */
+  height: 54px; /* Aumentado en un 10% */
+  background-image: url("../img/space/nave.png"); /* Asigna la imagen de la nave */
+  background-size: cover;
   transform: translateX(-50%);
 }
 .main-container .bullet {
   position: absolute;
-  width: 10px;
-  height: 20px;
+  width: 11px; /* Aumentado en un 10% */
+  height: 22px; /* Aumentado en un 10% */
   background-color: #00ff00;
   border-radius: 5px;
 }
 .main-container .enemy {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 44px; /* Aumentado en un 10% */
+  height: 44px; /* Aumentado en un 10% */
   border-radius: 5px;
+  background-size: cover; /* Asegúrate de que esta línea no esté comentada */
+  transform: scale(1.1); /* Aumentado en un 10% */
 }
 .main-container .enemy.red {
-  background-color: #ff0000;
+  background-image: url("../img/space/rojo.png");
 }
 .main-container .enemy.blue {
-  background-color: #0000ff;
+  background-image: url("../img/space/azul.png");
 }
 .main-container .enemy.yellow {
-  background-color: #ffff00;
+  background-image: url("../img/space/amarillo.png");
 }
 .main-container .item {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 33px; /* Aumentado en un 10% */
+  height: 33px; /* Aumentado en un 10% */
   border-radius: 50%;
+  transform: scale(1.1); /* Aumentado en un 10% */
 }
 .main-container .item.speed {
-  background-color: #03dac5;
+  background-image: url("../img/space/velocidad.png"); /* Power-up de velocidad */
+  background-size: cover;
 }
 .main-container .item.bulletSpeed {
-  background-color: #00ffff;
+  background-image: url("../img/space/velocidadbalas.png"); /* Power-up de velocidad de balas */
+  background-size: cover;
 }
 .main-container .item.bulletDamage {
-  background-color: #ff9900;
+  background-image: url("../img/space/daño.png"); /* Power-up de daño */
+  background-size: cover;
 }
 .main-container .info-sidebar,
 .main-container .info-sidebar-right {
@@ -149,8 +153,7 @@ header nav ul li a:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   color: #ffffff;
   font-size: 1.1em;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 .main-container .info-sidebar-right {
   grid-column: 3/span 1;
@@ -177,17 +180,14 @@ footer {
 }
 
 .enemy.red {
-  background-color: #ff0000;
   animation: moveEnemy 5s linear infinite;
 }
 
 .enemy.blue {
-  background-color: #0000ff;
   animation: moveEnemy 4s linear infinite;
 }
 
 .enemy.yellow {
-  background-color: #ffff00;
   animation: moveEnemy 3s linear infinite;
 }
 
@@ -198,4 +198,6 @@ footer {
   100% {
     top: 100%;
   }
-}/*# sourceMappingURL=space_invaders.css.map */
+}
+
+/*# sourceMappingURL=space_invaders.css.map */

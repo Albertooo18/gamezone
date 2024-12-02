@@ -212,9 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Crear enemigo
     const createEnemy = () => {
         if (gameEnded) return;
-
+    
         let enemyType;
-
+    
         if (enemiesDestroyed >= 50) { // Después de 40 enemigos destruidos
             const randomValue = Math.random();
             if (randomValue < 0.33) {
@@ -229,12 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else { // Desde el inicio
             enemyType = 'red';
         }
-
+    
         const enemy = document.createElement('div');
-        enemy.classList.add('enemy', enemyType);
+        enemy.classList.add('enemy', enemyType); // Aplica la clase correcta según el tipo de enemigo
         enemy.style.left = `${Math.floor(Math.random() * (gameArea.offsetWidth - 50))}px`;
         enemy.style.top = '0px';
-
+    
         // Asignar vida según el tipo de enemigo
         switch (enemyType) {
             case 'red':
@@ -248,11 +248,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 enemy.dataset.canDodge = 'true';
                 break;
         }
-
+    
         gameArea.appendChild(enemy);
         moveEnemy(enemy);
     };
-
+    
     // Mover enemigo hacia abajo
     const moveEnemy = (enemy) => {
         let enemySpeed;

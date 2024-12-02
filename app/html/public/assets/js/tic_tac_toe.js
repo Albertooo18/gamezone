@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let consecutiveWins = 0;
     let difficultyLevel = 1;
     let gameEnded = false;
-    let adWatched = false; // Variable para controlar si el anuncio ya fue visto
 
     // Obtener el ID del usuario desde el HTML
     const userId = document.querySelector('meta[name="user-id"]').getAttribute('content');
@@ -98,63 +97,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const findWinningMove = () => findCriticalMove('O');
 
     // Comprobar si hay un ganador
-    // Comprobar si hay un ganador
-const checkWinner = () => {
-    const winningCombinations = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
-    let winner = null;
+    const checkWinner = () => {
+        const winningCombinations = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+        let winner = null;
 
-    // Comprobar las combinaciones ganadoras
-    winningCombinations.forEach((combination) => {
-        const [a, b, c] = combination;
-        if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
-            winner = gameState[a];
-        }
-    });
+        // Comprobar las combinaciones ganadoras
+        winningCombinations.forEach((combination) => {
+            const [a, b, c] = combination;
+            if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+                winner = gameState[a];
+            }
+        });
 
-    // Si hay un ganador
-    if (winner) {
-        if (winner === 'X') {
-            showAlert('¡Felicidades!', 'Has ganado.', 'success').then(() => {
-                playerScore += 10;
-                consecutiveWins++;
-                if (consecutiveWins >= 2) {
-                    difficultyLevel = Math.min(3, difficultyLevel + 1);
-                    consecutiveWins = 0;
-                }
-                updateScore();
-                resetGame();
-                currentPlayer = 'O'; // La IA comienza después de ganar
-                iaMove();
-            });
-        } else {
-            showAlert('Derrota', 'La IA ha ganado. Inténtalo de nuevo.', 'error').then(() => {
-                totalLosses++;
-                consecutiveWins = 0;
-                updateScore();
-
-                if (totalLosses >= 3) {
-                    endGame();
-                } else {
+        // Si hay un ganador
+        if (winner) {
+            if (winner === 'X') {
+                showAlert('¡Felicidades!', 'Has ganado.', 'success').then(() => {
+                    playerScore += 10;
+                    consecutiveWins++;
+                    if (consecutiveWins >= 2) {
+                        difficultyLevel = Math.min(3, difficultyLevel + 1);
+                        consecutiveWins = 0;
+                    }
+                    updateScore();
                     resetGame();
-                    currentPlayer = 'X';
-                }
-            });
+                    currentPlayer = 'O'; // La IA comienza después de ganar
+                    iaMove();
+                });
+            } else {
+                showAlert('Derrota', 'La IA ha ganado. Inténtalo de nuevo.', 'error').then(() => {
+                    totalLosses++;
+                    consecutiveWins = 0;
+                    updateScore();
+
+                    if (totalLosses >= 3) {
+                        endGame();
+                    } else {
+                        resetGame();
+                        currentPlayer = 'X';
+                    }
+                });
+            }
+            return true;
         }
-        return true;
-    }
 
-    // Si no hay ganador y el tablero está lleno, es un empate
-    if (!gameState.includes(null)) {
-        showCoinFlip(); // Llamar la función de la moneda
-        return true;
-    }
+        // Si no hay ganador y el tablero está lleno, es un empate
+        if (!gameState.includes(null)) {
+            showCoinFlip(); // Llamar la función de la moneda
+            return true;
+        }
 
-    return false;
-};
+        return false;
+    };
 
     // Mostrar una alerta con SweetAlert2 y devolver una promesa
     const showAlert = (title, text, icon) => {
@@ -177,7 +175,7 @@ const checkWinner = () => {
 
         // Mostrar el gif de la moneda en el centro con animación
         const coinGif = document.createElement('img');
-        coinGif.src = '../public/assets/img/coin.gif';  // Asegúrate de que la ruta al gif esté bien
+        coinGif.src = 'img/coin.gif';  // Asegúrate de que la ruta al gif esté bien
         coinGif.alt = 'Moneda girando';
         coinGif.style.width = '165px';  // Un 10% más grande
         coinGif.style.height = '165px'; // Un 10% más grande
@@ -239,7 +237,6 @@ const checkWinner = () => {
             totalLosses = 0;
             difficultyLevel = 1;
             gameEnded = false;
-            adWatched = false; // Reiniciar el estado del anuncio visto
             updateScore();
             resetGame();
         });
@@ -250,7 +247,6 @@ const checkWinner = () => {
         scoreElement.textContent = playerScore;
         levelElement.textContent = difficultyLevel;
         lossesElement.innerHTML = '&#10084;'.repeat(3 - totalLosses);
-        checkExtraLifeOption(); // Comprobar si se debe mostrar la opción de vida extra
 
         if (playerScore > parseInt(maxScoreElement.textContent)) {
             maxScoreElement.textContent = playerScore;
@@ -289,54 +285,6 @@ const checkWinner = () => {
         });
     };
 
-    // Mostrar la notificación para ver el anuncio automáticamente cuando al jugador le quede solo una vida y no haya visto el anuncio
-    const checkExtraLifeOption = () => {
-        if (totalLosses === 2 && !gameEnded && !adWatched) {
-            Swal.fire({
-                title: 'Ver Anuncio',
-                text: '¿Quieres ver un anuncio para ganar una vida extra?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Aceptar',
-                cancelButtonText: 'Rechazar',
-                allowOutsideClick: () => !Swal.isLoading() // Permitir hacer clic fuera para priorizar el botón de reinicio
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Simulación de un video de anuncio (en una implementación real, este sería un anuncio real)
-                    showAd().then(() => {
-                        totalLosses--; // Restar una pérdida (ganar una vida extra)
-                        adWatched = true; // Marcar que el anuncio ya fue visto
-                        updateScore();  // Actualizar la puntuación en el DOM
-                    }).catch(() => {
-                        console.error('El anuncio no se completó. No se otorgará una vida extra.');
-                    });
-                }
-            });
-        }
-    };
-
-    // Función para mostrar el anuncio (esto es una simulación)
-    const showAd = () => {
-        return new Promise((resolve, reject) => {
-            // Aquí es donde integrarías una API real para mostrar anuncios.
-            // Simularemos un video con un "timeout" de 5 segundos.
-            Swal.fire({
-                title: 'Ver Anuncio',
-                text: 'Espera a que termine el video para ganar una vida extra.',
-                imageUrl: '../public/assets/img/ad-placeholder.jpg',
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                allowOutsideClick: false // Bloquear clic fuera mientras se muestra el anuncio
-            }).then(() => {
-                // Simular que el usuario completó de ver el anuncio.
-                resolve();
-            }).catch(() => {
-                reject();
-            });
-        });
-    };
-
     // Reiniciar el juego
     const resetGame = () => {
         gameState = Array(9).fill(null);
@@ -345,7 +293,7 @@ const checkWinner = () => {
     };
 
     resetButton.addEventListener('click', () => {
-        Swal.close(); // Cerrar cualquier diálogo de anuncio que esté abierto
+        Swal.close(); // Cerrar cualquier diálogo abierto
         resetGame();
     });
     
