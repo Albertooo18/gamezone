@@ -7,16 +7,15 @@ services:
       dockerfile: Dockerfile
     container_name: gamezone_web
     ports:
-      - "80:80"
-      - "443:443"   # Aseguramos que el contenedor también exponga el puerto 443 para SSL
+      - "80:80"  # Solo exponer el puerto 80 para HTTP
     volumes:
-      - ./html:/var/www/certificadocripto.xyz  # Volumen para tu aplicación web
+      - ./html:/var/www/html  # Volumen local mapeado al contenedor
     networks:
       - app-network
     restart: "always"
     environment:
       - APACHE_LOG_DIR=/var/log/apache2
-      - DB_HOST=172.30.158.74  # Cambiar por la IP privada de la máquina donde corre MariaDB
+      - DB_HOST=ip_privada_mariadb  # Cambiar por la IP privada de la instancia MariaDB
       - DB_PORT=3306
       - DB_NAME=gamezone
       - DB_USER=user
