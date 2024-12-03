@@ -16,7 +16,7 @@ services:
     restart: "always"
     environment:
       - APACHE_LOG_DIR=/var/log/apache2
-      - DB_HOST=ip_privada_mariadb  # Cambiar por la IP privada de la instancia MariaDB
+      - DB_HOST=172.30.158.74  # Cambiar por la IP privada de la máquina donde corre MariaDB
       - DB_PORT=3306
       - DB_NAME=gamezone
       - DB_USER=user

@@ -31,7 +31,7 @@ const userId = <?php echo json_encode($userId); ?>;
     <canvas id="cityCanvas"></canvas>
 
     <audio id="gameMusic" loop>
-        <source src="audio/skatee.mp3"> <!-- Asegúrate de que la ruta del archivo sea correcta -->
+        <source src="skatee.mp3"> <!-- Asegúrate de que la ruta del archivo sea correcta -->
         Your browser does not support the audio element.
     </audio>
 
