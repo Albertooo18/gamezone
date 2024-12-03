@@ -254,13 +254,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Enviar la puntuación al backend utilizando fetch
+    // Enviar la puntuación al backend utilizando fetch
     const saveScore = (score) => {
         if (!userId) {
             console.error("No se puede enviar la puntuación sin un ID de usuario.");
             return;
         }
 
-        fetch('../src/Controllers/ScoreController.php', {
+        // Apunta al controlador específico para TicTacToe
+        fetch('../../src/Controllers/TicTacToeScoreController.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -268,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             body: new URLSearchParams({
                 action: 'saveScore',
                 user_id: userId,
-                game_id: 1,
+                game_id: 1,  // El ID del juego "TicTacToe" (1)
                 score: score
             })
         })
@@ -284,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Hubo un error:", error);
         });
     };
+
 
     // Reiniciar el juego
     const resetGame = () => {

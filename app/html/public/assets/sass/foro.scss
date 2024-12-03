@@ -1,0 +1,237 @@
+@import 'variables';  // Asegúrate de que variables.scss esté en la misma carpeta
+
+// Reseteo de márgenes y relleno
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Estilo del body
+html, body {
+  width: 100%;
+  min-height: 100%;  // Asegura que el body ocupe todo el alto de la ventana
+  background-color: $background-color;  // Fondo oscuro principal
+  color: $text-color;  // Color de texto claro
+  font-family: $font-family;
+  background: $page-background;  // Fondo de página con imagen
+  background-size: $background-size;
+  background-attachment: $background-attachment;
+  background-position: $background-position;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;  // Centra todo
+  position: relative;
+  overflow-x: visible;  // Habilita el scroll horizontal si es necesario
+  overflow-y: auto;  // Permite el scroll vertical
+}
+
+// Notificación emergente
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: $background-dark;
+  color: $secondary-color;
+  padding: 9px;  // Reducir padding
+  border-radius: $border-radius;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 10;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+// Estilo del header
+header {
+  background-color: $header-background;  // Fondo semitransparente
+  padding: 9px 0;  // Reducir padding
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  // Sombra sutil para separación
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Contenedor de navegación en el header
+nav {
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 12px;  // Reducir el espacio entre los enlaces
+    padding: 0;
+    margin: 0;
+
+    li {
+      a {
+        color: $secondary-color;
+        text-decoration: none;
+        padding: 6px;  // Reducir padding
+        font-weight: $font-weight-bold;
+
+        &:hover {
+          color: $primary-color;  // Hover para enlaces
+          text-decoration: underline;  // Subrayado en hover
+        }
+      }
+    }
+  }
+}
+
+// Contenedor principal de las publicaciones (con efecto glassy)
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 960px;  // Reducir el ancho máximo
+  padding: 12px;  // Reducir padding
+  margin-top: 60px;  // Para que no se sobreponga al header
+  margin-bottom: 12px;
+  background-color: rgba(255, 255, 255, 0.1);  // Fondo semi-transparente
+  border-radius: 12px;  // Bordes más redondeados
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  // Sombra sutil
+  overflow-y: auto;  // Permite el scroll vertical
+  min-height: 350px;  // Establecer una altura mínima para el contenedor
+}
+
+// Estilo del formulario de publicación (con efecto glassy y simetría)
+.form-container {
+  background: rgba(255, 255, 255, 0.2);  // Fondo más claro y transparente (similar al de las publicaciones)
+  padding: 12px;  // Reducir padding
+  border-radius: 12px;  // Bordes más redondeados
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  // Sombra suave
+  width: 90%;  // Reducir el tamaño máximo para hacerlo más compacto
+  margin: 12px auto;
+  display: grid;
+  grid-template-columns: 1fr;  // Una sola columna
+  grid-gap: 9px;  // Espacio entre los elementos
+  backdrop-filter: blur(6px);  // Efecto de desenfoque de fondo (efecto glassy)
+}
+
+// Estilo para el área de texto
+textarea {
+  width: 100%;
+  padding: 9px;  // Reducir el padding
+  border-radius: 8px;
+  border: 1px solid $border-color;
+  background-color: rgba(0, 0, 0, 0.5);  // Fondo oscuro con transparencia
+  color: $text-color;
+  font-size: 0.9em;  // Reducir el tamaño de la fuente
+  resize: none;
+  min-height: 90px;  // Reducir la altura mínima
+  outline: none;
+  backdrop-filter: blur(4px);  // Efecto de desenfoque en el área de texto
+}
+
+// Estilo para el uploader de archivos
+.custom-file-upload {
+  display: grid;
+  gap: 7px;  // Reducir espacio entre elementos
+  align-items: center;
+
+  input[type="file"] {
+    display: none;  // Ocultar el input de archivo real
+  }
+
+  .custom-file-upload-label {
+    padding: 8px 12px;  // Reducir padding
+    background-color: $primary-color;
+    color: $text-color;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+  }
+
+  #file-selected-name {
+    font-size: 0.8em;  // Reducir el tamaño de la fuente
+    color: $primary-color;
+    margin-top: 4px;
+  }
+
+  .custom-file-upload-label:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+// Estilo para el botón de publicación
+.custom-submit-btn {
+  padding: 8px 20px;  // Reducir padding
+  background-color: $primary-color;
+  color: $text-color;
+  border-radius: $border-radius;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  justify-self: center;  // Centra el botón en su celda
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+}
+
+// Estilo para el logo
+.logo-container img {
+  width: 300px;  // Reducir el tamaño del logo (60% menos)
+  height: auto;
+  margin-top: 40px;  // Un poco de espacio hacia arriba
+  margin-bottom: 12px;  // Mantener el espacio debajo del logo
+}
+
+// Estilo del footer
+footer {
+  background-color: $header-background;  // Fondo semitransparente
+  padding: 12px;
+  text-align: center;
+  color: $text-color;
+  margin-top: auto;  // Esto hace que el footer se pegue al fondo
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);  // Sombra sutil en la parte superior
+  width: 100%;
+}
+
+// Contenedor de publicaciones (con efecto glassy)
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;  // Reducir el espacio entre publicaciones
+  max-width: 90%;  // Aumentar el ancho máximo de las publicaciones
+  padding: 12px;  // Menos padding en el contenedor
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);  // Fondo más transparente
+  border-radius: 12px;  // Bordes más redondeados
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  // Sombra para el contenedor de publicaciones
+  max-height: none;  // Eliminar límite de altura
+  /* Eliminar el scroll dentro de las publicaciones */
+  overflow-y: visible;  
+}
+
+// Estilo para cada publicación
+.post {
+  background-color: rgba(255, 255, 255, 0.1);  // Fondo con efecto glassy
+  border-radius: 12px;
+  padding: 12px;  // Reducir el padding de cada publicación
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  // Sombra suave
+  display: flex;
+  flex-direction: column;
+  gap: 10px;  // Reducir espacio entre los elementos
+  margin: 8px 0; // Espacio entre publicaciones
+  max-width: 100%;  // Asegurarse de que cada publicación ocupe todo el ancho disponible
+  height: auto;  // Dejar que la publicación se ajuste en altura
+}

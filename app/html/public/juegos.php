@@ -23,7 +23,6 @@ session_start();
             <ul>
                 <li><a href="../index.php">Inicio</a></li>
                 <li><a href="juegos.php">Juegos</a></li>
-                <li><a href="contactos.php">Contacto</a></li>
                 <?php if (isset($_SESSION['username'])): ?>
                     <li><a href="../src/Views/account.php">Cuenta</a></li>
                 <?php else: ?>
@@ -49,7 +48,7 @@ session_start();
             <a href="games/dev.php">
                 <img class="juego-imagen" src="assets/img/robot.webp" alt="Juego 4">
             </a>
-            <a href="games/dev.php">
+            <a href="games/skate.php">
                 <img class="juego-imagen" src="assets/img/skate.webp" alt="Juego 5">
             </a>
             <a href="games/space_invaders.php">

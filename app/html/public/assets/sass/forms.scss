@@ -1,0 +1,91 @@
+@import 'variables';  // Asegúrate de que variables.scss esté en la misma carpeta
+
+// Estilo del formulario de publicación (con efecto glassy y simetría)
+.form-container {
+  background: rgba(0, 0, 0, 0.5);  // Fondo negro semi-transparente (efecto glassy)
+  padding: 20px;  // Reducir el padding para hacer el formulario más pequeño
+  border-radius: 15px;  // Redondear los bordes
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);  // Sombra suave
+  max-width: 600px;  // Reducir el tamaño máximo
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr;  // Una sola columna
+  grid-gap: 15px;  // Espacio entre los elementos
+  backdrop-filter: blur(8px);  // Efecto de desenfoque de fondo (efecto glassy)
+}
+
+// Estilo para el área de texto
+textarea {
+  width: 100%;
+  padding: 12px;  // Reducir el padding
+  border-radius: 10px;
+  border: 1px solid $border-color;
+  background-color: rgba(0, 0, 0, 0.5);  // Fondo oscuro con transparencia
+  color: $text-color;
+  font-size: 1em;  // Reducir el tamaño de la fuente
+  resize: none;
+  min-height: 120px;  // Reducir la altura mínima
+  outline: none;
+  backdrop-filter: blur(5px);  // Efecto de desenfoque en el área de texto
+}
+
+// Estilo para el uploader de archivos
+.custom-file-upload {
+  display: grid;
+  gap: 10px;
+  align-items: center;
+
+  input[type="file"] {
+    display: none;  // Ocultar el input de archivo real
+  }
+
+  .custom-file-upload-label {
+    padding: 10px 15px;  // Reducir el padding
+    background-color: $primary-color;
+    color: $text-color;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+  }
+
+  #file-selected-name {
+    font-size: 0.9em;  // Reducir el tamaño de la fuente
+    color: $secondary-color;
+    margin-top: 5px;
+  }
+
+  .custom-file-upload-label:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+// Estilo para el botón de publicación
+.custom-submit-btn {
+  padding: 10px 25px;  // Reducir el padding
+  background-color: $primary-color;
+  color: $text-color;
+  border-radius: $border-radius;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  justify-self: center;  // Centra el botón en su celda
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+}
+
+// Estilo para el logo
+.logo-container img {
+  width: 250px;  // Reducir el tamaño del logo
+  height: auto;
+  margin-top: 20px;  // Un poco de espacio hacia arriba
+  margin-bottom: 20px;  // Mantener el espacio debajo del logo
+}

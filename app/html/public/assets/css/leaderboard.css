@@ -1,0 +1,118 @@
+@charset "UTF-8";
+.leaderboard-section {
+  margin: 30px auto;
+  max-width: 1000px;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(33, 33, 33, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+}
+.leaderboard-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #6200ea;
+}
+.leaderboard-section table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.leaderboard-section table th, .leaderboard-section table td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid #444444;
+}
+.leaderboard-section table th {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  text-transform: uppercase;
+}
+.leaderboard-section table tr:nth-child(even) {
+  background-color: rgba(33, 33, 33, 0.7);
+}
+.leaderboard-section table tr:nth-child(odd) {
+  background-color: #333333;
+}
+.leaderboard-section table td a {
+  color: #ff5722;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+.leaderboard-section table td a:hover {
+  color: #d32f2f;
+}
+.leaderboard-section table td button {
+  padding: 10px 15px;
+  background-color: #6200ea;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.leaderboard-section table td button:hover {
+  background-color: #03dac5;
+}
+
+body {
+  background-color: #121212;
+  font-family: "Arial", sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+  background: url("../img/montaña.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.logo-container {
+  text-align: center;
+  padding: 20px 0;
+}
+.logo-container img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px 0;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+}
+header nav ul li a {
+  color: #6200ea;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2em;
+  padding: 10px;
+}
+header nav ul li a:hover {
+  color: #03dac5;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 40px;
+  backdrop-filter: blur(10px);
+}
+
+/*# sourceMappingURL=leaderboard.css.map */

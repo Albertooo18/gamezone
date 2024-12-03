@@ -21,7 +21,6 @@ session_start();
             <ul>
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="public/juegos.php">Juegos</a></li>
-                <li><a href="public/contactos.php">Contacto</a></li>
                 <?php if (isset($_SESSION['username'])): ?>
                     <li><a href="src/Views/account.php">Cuenta</a></li>
                 <?php else: ?>
@@ -38,9 +37,8 @@ session_start();
         <aside>
             <h2>Enlaces útiles</h2>
             <ul>
-                <li><a href="#">Noticias</a></li>
-                <li><a href="#">Top Juegos</a></li>
-                <li><a href="#">Foros</a></li>
+                <li><a href="public/leaderboard.php">Leaderboard</a></li>
+                <li><a href="public/foro.php">Foro</a></li>
             </ul>
         </aside>
 

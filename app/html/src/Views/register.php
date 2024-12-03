@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <ul>
                 <li><a href="../../index.php">Inicio</a></li>
                 <li><a href="../../public/juegos.php">Juegos</a></li>
-                <li><a href="../../public/contactos.php">Contacto</a></li>
             </ul>
         </nav>
     </header>

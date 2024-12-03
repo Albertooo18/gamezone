@@ -39,7 +39,6 @@ $userScores = $scoreModel->getUserScores($userInfo['id']);
             <ul>
                 <li><a href="../../index.php">Inicio</a></li>
                 <li><a href="../../public/juegos.php">Juegos</a></li>
-                <li><a href="../../public/contactos.php">Contacto</a></li>
                 <?php if (isset($_SESSION['username'])): ?>
                     <li><a href="account.php">Cuenta</a></li>
                 <?php else: ?>

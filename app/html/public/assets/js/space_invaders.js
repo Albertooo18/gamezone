@@ -219,12 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const randomValue = Math.random();
             if (randomValue < 0.33) {
                 enemyType = 'red';
-            } else if (randomValue < 0.66) {
+            } else if (randomValue < 0.60) {
                 enemyType = 'blue';
             } else {
                 enemyType = 'yellow';
             }
-        } else if (enemiesDestroyed >= 20) { // Después de 20 enemigos destruidos
+        } else if (enemiesDestroyed >= 25) { // Después de 20 enemigos destruidos
             enemyType = Math.random() < 0.5 ? 'red' : 'blue';
         } else { // Desde el inicio
             enemyType = 'red';
@@ -252,7 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
         gameArea.appendChild(enemy);
         moveEnemy(enemy);
     };
-    
+ 
+    // Mover enemigo hacia abajo
     // Mover enemigo hacia abajo
     const moveEnemy = (enemy) => {
         let enemySpeed;
@@ -294,24 +295,28 @@ document.addEventListener('DOMContentLoaded', () => {
             // Ajustar el límite según el tipo de enemigo
             let limit;
             if (enemy.classList.contains('red')) {
-                limit = gameArea.offsetHeight - 260;
+                limit = gameArea.offsetHeight - 340;
             } else if (enemy.classList.contains('blue')) {
-                limit = gameArea.offsetHeight - 220; // Los enemigos azules pueden llegar más abajo
+                limit = gameArea.offsetHeight - 290; // Los enemigos azules pueden llegar más abajo
             } else if (enemy.classList.contains('yellow')) {
-                limit = gameArea.offsetHeight - 220; // Los enemigos amarillos pueden llegar aún más abajo
+                limit = gameArea.offsetHeight - 290; // Los enemigos amarillos pueden llegar aún más abajo
             }
 
             if (parseFloat(enemy.style.top) > limit) {
                 console.log(`Enemy at position ${enemy.style.top} reached the bottom and will be removed.`);
-                clearInterval(enemyInterval);
+
+                // Aquí se reduce la vida del jugador cuando un enemigo llega al fondo
                 if (enemy.parentElement) {
                     enemy.remove();
                     playerLives -= 1;
-                    updateLives();
+                    updateLives();  // Asegúrate de actualizar las vidas visualmente
+
                     if (playerLives <= 0) {
                         endGame();
                     }
                 }
+
+                clearInterval(enemyInterval);
             }
         }, 15);
         enemyMovementIntervals.push(enemyInterval);
@@ -357,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalAvailablePowerUps = availablePowerUps.length;
 
         // 50% probabilidad de que no salga ningún power-up
-        if (Math.random() < 0.80) {
+        if (Math.random() < 0.86){
             return null; // No cae power-up
         }
 
@@ -431,18 +436,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Actualizar vidas
+    // Actualizar vidas
     const updateLives = () => {
-        const livesContainer = document.getElementById('lives-container');
-        livesContainer.innerHTML = ''; // Limpiar contenedor de vidas
-    
-        for (let i = 0; i < playerLives; i++) {
-            const heart = document.createElement('div');
-            heart.classList.add('life-heart');
-            livesContainer.appendChild(heart);
-        }
+        const livesContainer = document.getElementById('player-lives');
+        livesContainer.textContent = `Vidas: ${playerLives}`;  // Actualizar el texto con las vidas actuales
     };
+
     
 
+    // Terminar el juego
     // Terminar el juego
     const endGame = () => {
         if (gameEnded) return;
@@ -450,9 +452,50 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(gameInterval);
         enemyMovementIntervals.forEach(interval => clearInterval(interval));
         enemyMovementIntervals = [];
+    
+        // Mostrar el mensaje de fin de juego
         alert(`Juego Terminado. Tu puntaje final es: ${playerScore}`);
+    
+        // Guardar la puntuación
+        saveScore(playerScore);  // Llamar a la función para guardar la puntuación
+    
+        // Mostrar el botón de reinicio
         restartButton.style.display = 'block';
     };
+
+    const saveScore = (score) => {
+        if (!userId) {
+            console.error("No se puede enviar la puntuación sin un ID de usuario.");
+            return;
+        }
+    
+        fetch('../../src/Controllers/SpaceInvadersScoreController.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                action: 'saveScore',
+                user_id: userId,  // Asegúrate de que userId esté disponible
+                game_id: 2,  // El ID del juego "Space Invaders" (2)
+                score: score
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("Puntuación guardada correctamente");
+            } else {
+                console.error("Error al guardar la puntuación:", data.error);
+            }
+        })
+        .catch(error => {
+            console.error("Hubo un error:", error);
+        });
+    };
+    
+    
+
 
     // Reiniciar el juego
     const resetGame = () => {
@@ -462,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playerSpeed = 5;
         bulletSpeed = 10;
         bulletDamage = 10;
-        playerLives = 3;
+        playerLives = 3;  // Reiniciar vidas al valor inicial
         powerUpCounts = {
             speed: 0,
             bulletSpeed: 0,
@@ -471,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateScore();
         updateEnemiesDestroyed();
         updatePowerUps();
-        updateLives();
+        updateLives();  // Actualizar las vidas visualmente al reiniciar
 
         // Eliminar todos los enemigos restantes
         const enemies = document.querySelectorAll('.enemy');
@@ -485,16 +528,17 @@ document.addEventListener('DOMContentLoaded', () => {
         player.style.left = `${(gameArea.offsetWidth - player.offsetWidth) / 2}px`;
     };
 
+
     // Iniciar el juego
     const startGame = () => {
-        let enemySpawnInterval = 2400;
+        let enemySpawnInterval = 2100;
         gameInterval = setInterval(() => {
             createEnemy();
 
-            if (enemiesDestroyed >= 20 && enemiesDestroyed < 40) {
-                enemySpawnInterval *= 0.75; // Reducir el tiempo de aparición en un 15% después de desbloquear los enemigos azules
-            } else if (enemiesDestroyed >= 40) {
-                enemySpawnInterval *= 0.60; // Reducir el tiempo de aparición en un 15% cuando se desbloquean los enemigos amarillos
+            if (enemiesDestroyed >= 25 && enemiesDestroyed < 50) {
+                enemySpawnInterval *= 0.50; // Reducir el tiempo de aparición en un 15% después de desbloquear los enemigos azules
+            } else if (enemiesDestroyed >= 50) {
+                enemySpawnInterval *= 0.66; // Reducir el tiempo de aparición en un 15% cuando se desbloquean los enemigos amarillos
             }
 
             clearInterval(gameInterval);

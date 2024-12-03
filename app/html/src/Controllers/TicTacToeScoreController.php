@@ -1,26 +1,19 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-// Agregar encabezados CORS para evitar problemas si se está probando entre diferentes dominios
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
+// Asegúrate de que la clase Db esté incluida
+require_once __DIR__ . '/../../config/db.php'; 
 
-require_once(__DIR__ . '/../config/db.php');
-require_once(__DIR__ . '/../models/Score.php');
-
-class ScoreController {
+class TicTacToeScoreController {
+    
+    // Método para guardar la puntuación
     public static function saveScore($userId, $gameId, $score) {
-        // Verificar que los valores sean válidos
         if ($userId === null || $gameId === null || !is_numeric($score)) {
-            throw new InvalidArgumentException("Datos inválidos para guardar la puntuación");
+            return ['success' => false, 'error' => 'Datos inválidos para guardar la puntuación'];
         }
-        
+
         // Conectar a la base de datos
         $db = Db::getConnection();
 
-        // Obtener las puntuaciones existentes del usuario para este juego, ordenadas de mayor a menor
+        // Obtener las puntuaciones existentes del usuario para este juego
         $query = "SELECT * FROM scores WHERE user_id = :user_id AND game_id = :game_id ORDER BY score DESC";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
@@ -28,8 +21,9 @@ class ScoreController {
         $stmt->execute();
         $existingScores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Si el usuario tiene menos de 3 puntuaciones, simplemente insertar la nueva puntuación
+        // Verificar si hay menos de 3 puntuaciones
         if (count($existingScores) < 3) {
+            // Insertar la nueva puntuación
             $query = "INSERT INTO scores (user_id, game_id, score, created_at) VALUES (:user_id, :game_id, :score, NOW())";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
@@ -37,7 +31,7 @@ class ScoreController {
             $stmt->bindParam(':score', $score, PDO::PARAM_INT);
             $stmt->execute();
         } else {
-            // Si ya existen 3 puntuaciones, verificar si la nueva puntuación es mayor que la más baja
+            // Si ya hay 3 puntuaciones, eliminar la más baja si es necesario
             $lowestScore = $existingScores[2]['score'];
             if ($score > $lowestScore) {
                 // Eliminar la puntuación más baja
@@ -55,35 +49,42 @@ class ScoreController {
                 $stmt->execute();
             }
         }
+
+        return ['success' => true];
     }
 
-    public static function getHighScores() {
-        $scoreModel = new Score();
-        return $scoreModel->getHighScores();
-    }
-
+    // Método para obtener la puntuación más alta de un usuario
     public static function getUserHighScore($userId) {
-        $scoreModel = new Score();
-        return $scoreModel->getUserHighScore($userId);
+        // Conectar a la base de datos
+        $db = Db::getConnection();
+
+        // Obtener la puntuación más alta del usuario
+        $query = "SELECT MAX(score) as high_score FROM scores WHERE user_id = :user_id AND game_id = 1";  // Asegúrate de que `game_id = 1` es para TicTacToe
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Retorna la puntuación más alta o 0 si no tiene puntuación
+        return $result['high_score'] ?? 0;
     }
 }
 
-// Manejo de peticiones POST desde JavaScript (fetch)
+// Manejo de peticiones POST para guardar la puntuación
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
-    $userId = isset($_POST['user_id']) ? (int)$_POST['user_id'] : null;
-    $gameId = isset($_POST['game_id']) ? (int)$_POST['game_id'] : null;
-    $score = isset($_POST['score']) ? (int)$_POST['score'] : null;
+    $userId = $_POST['user_id'] ?? null;
+    $score = $_POST['score'] ?? null;
 
-    if ($action === 'saveScore' && $userId !== null && $gameId !== null && $score !== null && is_numeric($score)) {
+    if ($action === 'saveScore' && $userId !== null && $score !== null) {
         try {
-            ScoreController::saveScore($userId, $gameId, $score);
-            echo json_encode(['success' => true]);
+            $gameId = 1; // ID de juego "TicTacToe"
+            echo json_encode(TicTacToeScoreController::saveScore($userId, $gameId, $score));
         } catch (Exception $e) {
             echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
     } else {
-        echo json_encode(['success' => false, 'error' => 'Parámetros inválidos']);
+        echo json_encode(['success' => false, 'error' => 'Parámetros insuficientes o inválidos']);
     }
 }
 ?>

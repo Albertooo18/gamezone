@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once '../../src/Controllers/ScoreController.php';
+require_once '../../src/Controllers/SpaceInvadersScoreController.php';
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
@@ -13,17 +13,16 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
 // Obtener el ID del usuario
 $userId = $_SESSION['user_id'];
 
-// Obtener la puntuación máxima del usuario
-try {
-    $maxScore = ScoreController::getUserHighScore($userId);
-} catch (Exception $e) {
-    $maxScore = 0;
-    error_log("Error al obtener la puntuación máxima: " . $e->getMessage());
-}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script>
+    const userId = <?php echo json_encode($_SESSION['user_id']); ?>;
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Invaders - GameZone</title>
@@ -46,7 +45,6 @@ try {
             <ul>
                 <li><a href="../../index.php">Inicio</a></li>
                 <li><a href="../juegos.php">Juegos</a></li>
-                <li><a href="../contactos.php">Contacto</a></li>
                 <li><a href="../../src/Views/account.php">Cuenta</a></li>
             </ul>
         </nav>
@@ -82,18 +80,14 @@ try {
             <div id="game-area">
                 <div id="player"></div>
             </div>
-
-            
-            
         </div>
+        
         <!-- Contenedor para la información del puntaje -->
         <aside class="info-sidebar-right">
-                
-                    <div id="player-score">Puntaje: 0</div>
-                    <div id="enemies-destroyed">Enemigos Eliminados: 0</div>
-                    <div id="power-ups">Velocidad Incrementada: x0, Velocidad de Disparo: x0, Daño Bala: x0</div>
-                
-            </aside>
+            <div id="player-score">Puntaje: 0</div>
+            <div id="enemies-destroyed">Enemigos Eliminados: 0</div>
+            <div id="power-ups">Velocidad Incrementada: x0, Velocidad de Disparo: x0, Daño Bala: x0</div>
+        </aside>
     </main>
 
     <!-- Pie de página -->

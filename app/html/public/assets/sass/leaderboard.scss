@@ -1,0 +1,140 @@
+@import 'variables';
+
+// ** Estilos para el contenedor del Leaderboard **
+.leaderboard-section {
+    margin: 30px auto;
+    max-width: 1000px; // Controla el tamaño máximo de la tabla
+    padding: 20px;
+    text-align: center;
+    background-color: $background-glassy;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); // Sombra difusa para el contenedor
+    backdrop-filter: blur(15px); // Efecto de desenfoque para el efecto glassy
+
+    h2 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        color: $primary-color;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: $border-radius;
+        overflow: hidden; // Asegura que no se desborde el borde redondeado
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid $border-color; // Color de bordes
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.5); // Fondo oscuro para encabezado
+            color: $text-color;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(33, 33, 33, 0.7); // Fondo para filas pares
+        }
+
+        tr:nth-child(odd) {
+            background-color: $background-dark; // Fondo para filas impares
+        }
+
+        td a {
+            color: #ff5722; // Color para el enlace de eliminación
+            text-decoration: none;
+            font-weight: $font-weight-bold;
+            transition: color 0.3s;
+
+            &:hover {
+                color: #d32f2f; // Rojo oscuro en hover
+            }
+        }
+
+        td button {
+            padding: 10px 15px;
+            background-color: $primary-color;
+            color: $text-color;
+            border: none;
+            border-radius: $border-radius;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: $secondary-color; // Cambia a color secundario al hacer hover
+            }
+        }
+    }
+}
+
+// ** Estilos generales para el body **
+body {
+    background-color: $background-color;
+    font-family: $font-family;
+    color: $text-color;
+    overflow-x: hidden;
+    background: $page-background;
+    background-size: $background-size;
+    background-attachment: $background-attachment;
+    background-position: $background-position;
+}
+
+// ** Estilo para el contenedor del logo **
+.logo-container {
+    text-align: center;
+    padding: 20px 0;
+
+    img {
+        max-width: 300px;
+        width: 100%;
+        height: auto;
+    }
+}
+
+// ** Estilo del header y navegación **
+header {
+    background-color: $header-background;
+    padding: 20px 0;
+    text-align: center;
+    backdrop-filter: blur(10px);
+
+    nav {
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+
+            li {
+                a {
+                    color: #6200ea; // Color primario
+                    text-decoration: none;
+                    font-weight: $font-weight-bold; // Fuente en negrita
+                    font-size: $font-size-lg;
+                    padding: 10px;
+
+                    &:hover {
+                        color: #03dac5; // Color secundario en hover
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ** Estilos para el footer **
+footer {
+    background-color: rgba(0, 0, 0, 0.5); // Fondo semitransparente
+    padding: 10px;
+    text-align: center;
+    color: $text-color; // Texto blanco
+    margin-top: 40px;
+    backdrop-filter: blur(10px); // Efecto glassy
+}

@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once '../../src/Controllers/ScoreController.php';
+require_once '../../src/Controllers/TicTacToeScoreController.php';
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
@@ -15,7 +15,7 @@ $userId = $_SESSION['user_id'];
 
 // Obtener la puntuación máxima del usuario
 try {
-    $maxScore = ScoreController::getUserHighScore($userId);
+    $maxScore = TicTacToeScoreController::getUserHighScore($userId);
 } catch (Exception $e) {
     $maxScore = 0;
     error_log("Error al obtener la puntuación máxima: " . $e->getMessage());
@@ -46,7 +46,6 @@ try {
             <ul>
                 <li><a href="../../index.php">Inicio</a></li>
                 <li><a href="../juegos.php">Juegos</a></li>
-                <li><a href="../contactos.php">Contacto</a></li>
                 <li><a href="../../src/Views/account.php">Cuenta</a></li>
             </ul>
         </nav>
