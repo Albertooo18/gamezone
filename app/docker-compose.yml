@@ -7,15 +7,15 @@ services:
       dockerfile: Dockerfile
     container_name: gamezone_web
     ports:
-      - "80:80"  # Solo exponer el puerto 80 para HTTP
+      - "80:80"  # Exponer el puerto 80 para que sea accesible desde la IP pública
     volumes:
       - ./html:/var/www/html  # Volumen local mapeado al contenedor
     networks:
       - app-network
-    restart: "always"
+    restart: always
     environment:
       - APACHE_LOG_DIR=/var/log/apache2
-      - DB_HOST=ip_privada_mariadb  # Cambiar por la IP privada de la instancia MariaDB
+      - DB_HOST=ip_privada_mariadb  # Cambiar a la IP o hostname de tu base de datos
       - DB_PORT=3306
       - DB_NAME=gamezone
       - DB_USER=user
