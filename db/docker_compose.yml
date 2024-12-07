@@ -2,18 +2,19 @@ version: "3.8"
 
 services:
   db:
-    image: mariadb
+    image: mariadb:latest
     container_name: gamezone_db
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=gamezone
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
-      - MYSQL_BIND_ADDRESS=0.0.0.0  # Permite que MariaDB escuche en todas las interfaces
+      - MYSQL_BIND_ADDRESS=0.0.0.0  # Permitir conexiones externas
     ports:
-      - "3306:3306"
+      - "3306:3306"  # Exponer el puerto 3306
     volumes:
-      - ./db_data:/var/lib/mysql  # Volumen local para datos persistentes
+      - ./db_data:/var/lib/mysql  # Persistencia de datos
+      - ./estructura_gamezone.sql:/docker-entrypoint-initdb.d/estructura_gamezone.sql  # Archivo SQL inicial
     networks:
       - db-network
     restart: "always"
@@ -22,7 +23,7 @@ services:
     image: adminer
     container_name: gamezone_adminer
     ports:
-      - "8081:8080"
+      - "8081:8080"  # Adminer para gestión de base de datos
     networks:
       - db-network
     restart: "always"
