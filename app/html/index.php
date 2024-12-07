@@ -64,7 +64,7 @@ session_start();
             </div>
             <div class="building">
                 <a href="public/games/space_invaders.php">
-                    <img class="building-img" src="../html/public/assets/img/space.webp" alt="Juego Espacial">
+                    <img class="building-img" src="public/assets/img/space.webp" alt="Juego Espacial">
                 </a>
                 <div class="building-info">
                     <h3>Juego Espacial</h3>
