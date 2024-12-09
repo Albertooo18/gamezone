@@ -2,10 +2,10 @@
 session_start();
 
 // Configuración de la base de datos
-$host = 'localhost';
-$dbname = 'gamezone';
-$username = 'root';
-$password = '';
+$host = '172.31.21.41';  // Cambia esto por la IP privada de la máquina donde está el contenedor MariaDB
+$db = 'gamezone';
+$user = 'user';  // Usuario configurado en docker-compose
+$pass = 'password';  // Contraseña configurada en docker-compose
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

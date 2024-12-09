@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$host = 'localhost';
-$dbname = 'gamezone';
-$username = 'root';
-$password = '';
+$host = '172.31.21.41';  // Cambia esto por la IP privada de la máquina donde está el contenedor MariaDB
+$db = 'gamezone';
+$user = 'user';  // Usuario configurado en docker-compose
+$pass = 'password';  // Contraseña configurada en docker-compose
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -17,21 +17,28 @@ try {
     }
 
     // Obtener el texto de la publicación
-    $text = $_POST['text'];
+    $text = htmlspecialchars(trim($_POST['text']), ENT_QUOTES, 'UTF-8');
     $user_id = $_SESSION['user_id'];
 
     // Subir la imagen si se ha seleccionado una
     $image = NULL;
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $image = 'uploads/' . $_FILES['image']['name'];
+        $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $file_extension = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+
+        if (!in_array($file_extension, $allowed_extensions)) {
+            die('Formato de imagen no permitido.');
+        }
+
+        $image = 'uploads/' . basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'], $image);
     }
 
-    // Insertar la publicación en la base de datos
-    $stmt = $pdo->prepare("INSERT INTO posts (text, image, user_id) VALUES (:text, :image, :user_id)");
-    $stmt->bindParam(':text', $text);
-    $stmt->bindParam(':image', $image);
-    $stmt->bindParam(':user_id', $user_id);
+    // Insertar la publicación usando el procedimiento almacenado
+    $stmt = $pdo->prepare("CALL InsertarPost(:text, :image, :user_id)");
+    $stmt->bindParam(':text', $text, PDO::PARAM_STR);
+    $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
 
     header('Location: ../foro.php');

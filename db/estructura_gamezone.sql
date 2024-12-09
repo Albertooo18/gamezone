@@ -83,3 +83,24 @@ CREATE TABLE `scores` (
   CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Crear Stored Procedure InsertarPost
+DELIMITER //
+CREATE PROCEDURE InsertarPost(
+    IN post_text TEXT,
+    IN post_image VARCHAR(255),
+    IN user_id INT
+)
+BEGIN
+    INSERT INTO posts (text, image, user_id) VALUES (post_text, post_image, user_id);
+END //
+DELIMITER ;
+
+-- Crear Stored Procedure EliminarPost
+DELIMITER //
+CREATE PROCEDURE EliminarPost(
+    IN post_id INT
+)
+BEGIN
+    DELETE FROM posts WHERE id = post_id;
+END //
+DELIMITER ;

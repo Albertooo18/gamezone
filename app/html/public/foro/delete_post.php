@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$host = 'localhost';
-$dbname = 'gamezone';
-$username = 'root';
-$password = '';
+$host = '172.31.21.41';  // Cambia esto por la IP privada de la máquina donde está el contenedor MariaDB
+$db = 'gamezone';
+$user = 'user';  // Usuario configurado en docker-compose
+$pass = 'password';  // Contraseña configurada en docker-compose
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -16,11 +16,14 @@ try {
         exit();
     }
 
-    // Eliminar la publicación
-    $post_id = $_POST['post_id'];
+    // Eliminar la publicación usando el procedimiento almacenado
+    $post_id = filter_input(INPUT_POST, 'post_id', FILTER_VALIDATE_INT);
+    if (!$post_id) {
+        die('ID de publicación inválido.');
+    }
 
-    $stmt = $pdo->prepare("DELETE FROM posts WHERE id = :post_id");
-    $stmt->bindParam(':post_id', $post_id);
+    $stmt = $pdo->prepare("CALL EliminarPost(:post_id)");
+    $stmt->bindParam(':post_id', $post_id, PDO::PARAM_INT);
     $stmt->execute();
 
     header('Location: ../foro.php');
