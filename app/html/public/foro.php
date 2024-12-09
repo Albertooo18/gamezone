@@ -8,7 +8,7 @@ $user = 'user';  // Usuario configurado en docker-compose
 $pass = 'password';  // Contraseña configurada en docker-compose
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Función para verificar si el usuario es admin
