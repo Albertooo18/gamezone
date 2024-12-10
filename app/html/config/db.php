@@ -6,7 +6,7 @@ class Db {
     public static function getConnection() {
         if (self::$pdo === null) {
             // Cambia 'localhost' por la IP privada de la máquina que tiene MariaDB
-            $host = '172.31.21.41';  // Cambia esto por la IP privada de la máquina donde está el contenedor MariaDB
+            $host = '172.31.24.224';  // Cambia esto por la IP privada de la máquina donde está el contenedor MariaDB
             $db = 'gamezone';
             $user = 'user';  // Usuario configurado en docker-compose
             $pass = 'password';  // Contraseña configurada en docker-compose

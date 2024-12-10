@@ -15,7 +15,7 @@ services:
     restart: always
     environment:
       - APACHE_LOG_DIR=/var/log/apache2
-      - DB_HOST=172.31.24.224  # Cambiar a la IP o hostname de tu base de datos
+      - DB_HOST=172.31.21.41  # Cambiar a la IP o hostname de tu base de datos
       - DB_PORT=3306
       - DB_NAME=gamezone
       - DB_USER=user
